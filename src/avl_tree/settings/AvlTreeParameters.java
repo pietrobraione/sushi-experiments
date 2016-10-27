@@ -6,12 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import jbse.apps.settings.ParseException;
 import sushi.configure.Coverage;
 import sushi.configure.JBSEParameters;
 import sushi.configure.MinimizerParameters;
 import sushi.configure.Options;
 import sushi.configure.ParametersModifier;
+import sushi.configure.ParseException;
 import sushi.logging.Level;
 
 public class AvlTreeParameters extends ParametersModifier {
@@ -36,7 +36,6 @@ public class AvlTreeParameters extends ParametersModifier {
 		//Tmp out directories
 		p.setOutDirectory(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
-		p.setTmpDirectoryName("AVL");
 		
 		//Parallelism
 		p.setRedundanceEvosuite(1);

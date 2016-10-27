@@ -18,3 +18,17 @@ Import Existing Eclipse Projects).
 
 ## Launching the experiments
 
+The project contains a set of Eclipse launch configurations that can be used to launch the experiments:
+
+* Sushi_AvlTree.launch for the AvlTree experiment;
+* Sushi_DllHard.launch for the doubly linked list example;
+* Sushi_GanttProject.launch for the GanttProject experiment;
+* Sushi_NodeCachingLinkedList.launch for the NodeCachingLinkedList experiment;
+* Sushi_TreeMap.launch for the TreeMap experiment;
+* Sushi_Tsafe_TS_R_3.launch for the TSAFE experiment.
+
+You will also find an Eclipse launch configuration Sushi_help.launch, that launches SUSHI without parameters 
+so it prints a help screen on the console.
+
+## Gathering the results
+
