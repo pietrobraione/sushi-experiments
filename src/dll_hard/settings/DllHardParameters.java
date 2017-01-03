@@ -14,7 +14,7 @@ import java.util.List;
 
 import sushi.configure.Coverage;
 import sushi.configure.JBSEParameters;
-import sushi.configure.MinimizerParameters;
+import sushi.configure.MergerParameters;
 import sushi.configure.Options;
 import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
@@ -53,10 +53,10 @@ public class DllHardParameters extends ParametersModifier {
 	throws FileNotFoundException, ParseException, IOException {
 		loadHEXFile("../sushi-experiments/settings/linked_list.jbse", p);
 		loadHEXFile("../sushi-experiments/settings/dll_hard.jbse", p);
-	}							 
-
+	}
+	
 	@Override
-	public void modify(MinimizerParameters p) {
+	public void modify(MergerParameters p) {
 		p.setBranchesToCover("dll_hard/Main:\\(Lcommon/LinkedList;Ljava/lang/Object;\\)V:sample:.*");
 	}
 

@@ -18,7 +18,7 @@ import jbse.rewr.RewriterSinCos;
 import jbse.rewr.RewriterSqrt;
 import sushi.configure.Coverage;
 import sushi.configure.JBSEParameters;
-import sushi.configure.MinimizerParameters;
+import sushi.configure.MergerParameters;
 import sushi.configure.Options;
 import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
@@ -63,7 +63,7 @@ public class TsafeParameters extends ParametersModifier {
 	}
 
 	@Override
-	public void modify(MinimizerParameters p) {
+	public void modify(MergerParameters p) {
 		p.setBranchesToCover("tsafe/Driver_TS_R.*");
 	}
 
