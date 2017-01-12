@@ -9,9 +9,6 @@ resolve begin
 ------------------------------------------------- 
 -- representation invariants for this.l
 
--- list initialization trigger
-instanceof node_caching_linked_list/NodeCachingLinkedList expands to instanceof node_caching_linked_list/NodeCachingLinkedList triggers node_caching_linked_list/NodeCachingLinkedList$HEXTriggers:(Lnode_caching_linked_list/NodeCachingLinkedList;)V:_got_NodeCachingLinkedList:{$REF},
-
 -- defines the NodeCachingLinkedList._owner instrumentation field necessary to triggers
 {R_ANY}/header(/next|/previous)*/_owner instanceof node_caching_linked_list/NodeCachingLinkedList not null,
 {R_ANY}/header(/next|/previous)*/_owner instanceof node_caching_linked_list/NodeCachingLinkedList expands to nothing,
@@ -78,4 +75,9 @@ instanceof node_caching_linked_list/NodeCachingLinkedList expands to instanceof 
 -- Alternatively:
 -- 2'/3': all the elements in {ROOT}:this.v_NodeCachingLinkedList
 --        cannot alias a list, or a list node.
-end	 
+end
+
+trigger begin
+-- list initialization trigger
+instanceof node_caching_linked_list/NodeCachingLinkedList expands to instanceof node_caching_linked_list/NodeCachingLinkedList triggers node_caching_linked_list/NodeCachingLinkedList$HEXTriggers:(Lnode_caching_linked_list/NodeCachingLinkedList;)V:_got_NodeCachingLinkedList:{$REF},
+end

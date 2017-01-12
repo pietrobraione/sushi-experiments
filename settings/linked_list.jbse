@@ -40,5 +40,6 @@ instanceof java/util/List expands to instanceof common/LinkedList triggers commo
 end
 
 trigger begin
+-- list initialization trigger
 instanceof common/LinkedList expands to instanceof common/LinkedList triggers common/LinkedList:(Lcommon/LinkedList;)V:_got_LinkedList:{$REF}
 end
