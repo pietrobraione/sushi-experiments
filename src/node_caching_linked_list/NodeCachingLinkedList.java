@@ -103,6 +103,12 @@ public class NodeCachingLinkedList {
         	Analysis.assume(l._initialCacheSize >= l._minCacheSize);
         	Analysis.assume(l._initialCacheSize <= l.maximumCacheSize);
         }
+        
+        private static void _got_NodeCachingLinkedList_noinv(NodeCachingLinkedList l) {
+        	l._initialSize = l.size;
+        	l._minSize = 0;
+        	Analysis.assume(l._initialSize >= l._minSize);
+        }
     }
 //INSTRUMENTATION END
 
