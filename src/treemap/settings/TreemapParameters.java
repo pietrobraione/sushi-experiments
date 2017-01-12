@@ -52,7 +52,7 @@ public class TreemapParameters extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile("../sushi-experiments/settings/tree_map_hex.jbse", p);
+		loadHEXFile("../sushi-experiments/settings/tree_map.jbse", p);
 		p.setHeapScope("treemap/TreeMap$Entry", 5); 				
 		p.setDepthScope(500);
 		p.setCountScope(6000);
