@@ -24,6 +24,7 @@ public class AvlTreeParameters extends ParametersModifier {
 		
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
+		p.setJREPath(JRE_PATH);
 		p.setTargetClass("avl_tree/AvlTree");
 			
 		//Analysis params 
@@ -45,7 +46,7 @@ public class AvlTreeParameters extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile("../sushi-experiments/settings/avl_tree.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "avl_tree.jbse", p);
 		p.setHeapScope("avl_tree/AvlNode", 5);
 	}							 
 

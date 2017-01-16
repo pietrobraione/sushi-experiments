@@ -24,13 +24,14 @@ public class AvlTreeParametersNoinv extends ParametersModifier {
 		
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
+		p.setJREPath(JRE_PATH);
 		p.setTargetClass("avl_tree/AvlTree");
 			
 		//Analysis params 
 		p.setEvosuiteBudget(60);
 		p.setJBSEBudget(3600);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.DEBUG);
+		p.setLogLevel(Level.INFO);
 
 		//Tmp out directories
 		p.setOutDirectory(OUT_PATH);
@@ -44,7 +45,7 @@ public class AvlTreeParametersNoinv extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile("../sushi-experiments/settings/avl_tree_noinv.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "avl_tree_noinv.jbse", p);
 		p.setHeapScope("avl_tree/AvlNode", 5);
 	}							 
 

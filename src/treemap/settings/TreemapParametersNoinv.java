@@ -3,7 +3,9 @@ package treemap.settings;
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
 import static common.Settings.JBSE_PATH;
+import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
+import static common.Settings.SETTINGS_PATH;
 import static common.Settings.SUSHI_LIB_PATH;
 import static common.Settings.TMP_BASE_PATH;
 import static common.Settings.Z3_PATH;
@@ -30,13 +32,14 @@ public class TreemapParametersNoinv extends ParametersModifier {
 
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
+		p.setJREPath(JRE_PATH);
 		p.setTargetClass("treemap/TreeMap");
 		
 		//Analysis params 
 		p.setEvosuiteBudget(360);
 		p.setJBSEBudget(3600);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.DEBUG);
+		p.setLogLevel(Level.INFO);
 		
 		//Tmp out directories
 		p.setOutDirectory(OUT_PATH);
@@ -51,7 +54,7 @@ public class TreemapParametersNoinv extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile("../sushi-experiments/settings/tree_map_noinv.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "tree_map_noinv.jbse", p);
 		p.setHeapScope("treemap/TreeMap$Entry", 5); 				
 		p.setDepthScope(500);
 		p.setCountScope(6000);

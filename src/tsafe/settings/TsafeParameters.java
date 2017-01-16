@@ -3,7 +3,9 @@ package tsafe.settings;
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
 import static common.Settings.JBSE_PATH;
+import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
+import static common.Settings.SETTINGS_PATH;
 import static common.Settings.SUSHI_LIB_PATH;
 import static common.Settings.TMP_BASE_PATH;
 import static common.Settings.Z3_PATH;
@@ -34,6 +36,7 @@ public class TsafeParameters extends ParametersModifier {
 
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
+		p.setJREPath(JRE_PATH);
 		p.setTargetClass("tsafe/Driver_TS_R");
 		
 		//Analysis params 
@@ -55,8 +58,8 @@ public class TsafeParameters extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile("../sushi-experiments/settings/linked_list.jbse", p);
-		loadHEXFile("../sushi-experiments/settings/tsafe.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "tsafe.jbse", p);
 		p.setDoSignAnalysis(true);
 		p.addRewriter(RewriterPolynomials.class, RewriterSinCos.class, RewriterSqrt.class, RewriterAbsSum.class);
 		p.setHeapScope("common/LinkedList$Entry", 3);

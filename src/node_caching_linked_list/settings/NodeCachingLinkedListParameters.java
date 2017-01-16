@@ -3,7 +3,9 @@ package node_caching_linked_list.settings;
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
 import static common.Settings.JBSE_PATH;
+import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
+import static common.Settings.SETTINGS_PATH;
 import static common.Settings.SUSHI_LIB_PATH;
 import static common.Settings.TMP_BASE_PATH;
 import static common.Settings.Z3_PATH;
@@ -30,6 +32,7 @@ public class NodeCachingLinkedListParameters extends ParametersModifier {
 
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
+		p.setJREPath(JRE_PATH);
 		p.setTargetClass("node_caching_linked_list/NodeCachingLinkedList");
 
 		//Analysis params 
@@ -52,7 +55,7 @@ public class NodeCachingLinkedListParameters extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile("../sushi-experiments/settings/node_caching_linked_list.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "node_caching_linked_list.jbse", p);
 		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
 		p.setDepthScope(50);
 		p.setCountScope(600);
