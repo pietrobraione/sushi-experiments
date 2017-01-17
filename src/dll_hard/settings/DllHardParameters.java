@@ -49,13 +49,16 @@ public class DllHardParameters extends ParametersModifier {
 		//Parallelism
 		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(2);
+		
+		//Timeout
+		p.setGlobalBudget(7200);
 	}
 
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
 		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
-		loadHEXFile("../sushi-experiments/settings/dll_hard.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "dll_hard.jbse", p);
 	}
 	
 	@Override

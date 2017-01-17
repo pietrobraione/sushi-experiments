@@ -39,6 +39,7 @@ public class GanttprojectParametersNoinv extends ParametersModifier {
 		//Analysis params 
 		p.setEvosuiteBudget(120);
 		p.setJBSEBudget(3600);
+		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
 		p.setLogLevel(Level.INFO);
 		
@@ -49,6 +50,9 @@ public class GanttprojectParametersNoinv extends ParametersModifier {
 		//Parallelism
 		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(20);
+		
+		//Timeout
+		p.setGlobalBudget(7200);
 	}
 
 	@Override

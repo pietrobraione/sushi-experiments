@@ -41,6 +41,9 @@ public class AvlTreeParameters extends ParametersModifier {
 		//Parallelism
 		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(2);
+		
+		//Timeout
+		p.setGlobalBudget(7200);
 	}
 	
 	@Override
