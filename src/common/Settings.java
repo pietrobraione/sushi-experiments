@@ -7,6 +7,7 @@ public final class Settings {
 	public static final Path BIN_PATH       = Paths.get("..", "sushi-experiments", "bin");
 	public static final Path JBSE_PATH      = Paths.get("..", "sushi-experiments", "lib", "jbse-lib.jar");
 	//public static final Path JBSE_PATH      = Paths.get("/Users", "denaro", "git", "jbse-new", "bin");
+	public static final Path GUAVA_PATH     = Paths.get("..", "sushi-experiments", "lib", "ganttproject-guava.jar");
 	public static final Path TMP_BASE_PATH  = Paths.get("..", "sushi-experiments", "out");
 	public static final Path EVOSUITE_PATH  = Paths.get(".", "lib", "evosuite-shaded-1.0.3.jar");
 	public static final Path JRE_PATH       = Paths.get(".", "data", "jre", "rt.jar");	

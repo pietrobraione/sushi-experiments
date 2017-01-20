@@ -2,7 +2,6 @@ resolve begin
 
 
 -- parameter value and field Node.value are both distinct objects or null, or alias of each other 
---{ROOT}:value instanceof java/lang/Object aliases nothing,
 {ROOT}:value instanceof java/lang/Object aliases {R_ANY}/header(/next|/previous)+/value,
 {R_ANY}/header(/next|/previous)+/value instanceof java/lang/Object aliases {ROOT}:value,
 
@@ -79,5 +78,5 @@ end
 
 trigger begin
 -- list initialization trigger
-instanceof node_caching_linked_list/NodeCachingLinkedList expands to instanceof node_caching_linked_list/NodeCachingLinkedList triggers node_caching_linked_list/NodeCachingLinkedList$HEXTriggers:(Lnode_caching_linked_list/NodeCachingLinkedList;)V:_got_NodeCachingLinkedList:{$REF},
+instanceof node_caching_linked_list/NodeCachingLinkedList expands to instanceof node_caching_linked_list/NodeCachingLinkedList triggers node_caching_linked_list/NodeCachingLinkedList$HEXTriggers:(Lnode_caching_linked_list/NodeCachingLinkedList;)V:_got_NodeCachingLinkedList:{$REF}
 end

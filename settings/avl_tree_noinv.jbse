@@ -1,5 +1,6 @@
 resolve begin
 
+-- root/left/right entries expand
 {R_ANY}/root(/left|/right)* instanceof avl_tree/AvlNode aliases nothing,
 
 -- wellConnected

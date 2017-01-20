@@ -2,6 +2,7 @@ package ganttproject.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
+import static common.Settings.GUAVA_PATH;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
@@ -12,7 +13,6 @@ import static common.Settings.Z3_PATH;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
 
 import sushi.configure.Coverage;
@@ -32,7 +32,7 @@ public class GanttprojectParameters extends ParametersModifier {
 		p.setZ3Path(Z3_PATH);
 
 		//Target 
-		p.setClassesPath(BIN_PATH, JBSE_PATH, Paths.get("..", "sushi-experiments", "lib", "ganttproject-guava.jar"));
+		p.setClassesPath(BIN_PATH, JBSE_PATH, GUAVA_PATH);
 		p.setJREPath(JRE_PATH);
 		p.setTargetClass("ganttproject/DependencyGraph");
 

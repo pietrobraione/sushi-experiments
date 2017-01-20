@@ -4,6 +4,8 @@ resolve begin
 ------------------------------------------------- 
 -- representation invariants for this.l
 
+-- for all the linked list nodes e, e.value is not a linked list node
+{R_ANY}/header(/next|/previous)+/value instanceof java/lang/Object aliases {ROOT}:(?!.*header(/next|/previous)*$).*,
 
 -- defines the NodeCachingLinkedList._owner instrumentation field necessary to triggers
 {R_ANY}/header(/next|/previous)*/_owner instanceof node_caching_linked_list/NodeCachingLinkedList not null,
