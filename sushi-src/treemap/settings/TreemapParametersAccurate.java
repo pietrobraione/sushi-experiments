@@ -1,4 +1,4 @@
-package node_caching_linked_list.settings;
+package treemap.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
@@ -22,7 +22,7 @@ import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
 import sushi.logging.Level;
 
-public class NodeCachingLinkedListParametersNoinv extends ParametersModifier {
+public class TreemapParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
@@ -33,14 +33,14 @@ public class NodeCachingLinkedListParametersNoinv extends ParametersModifier {
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
 		p.setJREPath(JRE_PATH);
-		p.setTargetClass("node_caching_linked_list/NodeCachingLinkedList");
-
+		p.setTargetClass("treemap/TreeMap");
+		
 		//Analysis params 
-		p.setEvosuiteBudget(300);
+		p.setEvosuiteBudget(3600);
 		p.setJBSEBudget(3600);
-		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.INFO);
+		p.setLogLevel(Level.DEBUG);
+		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
 		
 		//Tmp out directories
 		p.setOutDirectory(OUT_PATH);
@@ -48,7 +48,7 @@ public class NodeCachingLinkedListParametersNoinv extends ParametersModifier {
 		
 		//Parallelism
 		p.setRedundanceEvosuite(1);
-		p.setParallelismEvosuite(20);
+		p.setParallelismEvosuite(2);
 		
 		//Timeout
 		p.setGlobalBudget(7200);
@@ -58,15 +58,15 @@ public class NodeCachingLinkedListParametersNoinv extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "node_caching_linked_list_noinv.jbse", p);
-		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
-		p.setDepthScope(50);
-		p.setCountScope(600);
+		loadHEXFile(SETTINGS_PATH + "tree_map_accurate.jbse", p);
+		p.setHeapScope("treemap/TreeMap$Entry", 5); 				
+		p.setDepthScope(500);
+		p.setCountScope(6000);
 	}
 
 	@Override
 	public void modify(MergerParameters p) {
-		p.setBranchesToCover("node_caching_linked_list/NodeCachingLinkedList.*");
+		p.setBranchesToCover("treemap/TreeMap(?!.*HEXTriggers.*$).*");
 	}
 
 	@Override

@@ -26,7 +26,7 @@ import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
 import sushi.logging.Level;
 
-public class TsafeParameters extends ParametersModifier {
+public class TsafeParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
@@ -40,11 +40,11 @@ public class TsafeParameters extends ParametersModifier {
 		p.setTargetClass("tsafe/Driver_TS_R");
 		
 		//Analysis params 
-		p.setEvosuiteBudget(3600);
+		p.setEvosuiteBudget(240);
 		p.setJBSEBudget(3600);
+		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.DEBUG);
-		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
+		p.setLogLevel(Level.INFO);
 
 		//Tmp out directories
 		p.setOutDirectory(OUT_PATH);
@@ -52,14 +52,17 @@ public class TsafeParameters extends ParametersModifier {
 
 		//Parallelism
 		p.setRedundanceEvosuite(1);
-		p.setParallelismEvosuite(2);
+		p.setParallelismEvosuite(20);
+		
+		//Timeout
+		p.setGlobalBudget(7200);
 	}
 
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
 		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
-		loadHEXFile(SETTINGS_PATH + "tsafe.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "tsafe_partial.jbse", p);
 		p.setDoSignAnalysis(true);
 		p.addRewriter(RewriterPolynomials.class, RewriterSinCos.class, RewriterSqrt.class, RewriterAbsSum.class);
 		p.setHeapScope("common/LinkedList$Entry", 3);

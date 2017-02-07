@@ -14,7 +14,7 @@ import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
 import sushi.logging.Level;
 
-public class AvlTreeParametersNoinv extends ParametersModifier {
+public class AvlTreeParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
@@ -28,11 +28,11 @@ public class AvlTreeParametersNoinv extends ParametersModifier {
 		p.setTargetClass("avl_tree/AvlTree");
 			
 		//Analysis params 
-		p.setEvosuiteBudget(60);
+		p.setEvosuiteBudget(3600);
 		p.setJBSEBudget(3600);
-		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.INFO);
+		p.setLogLevel(Level.DEBUG);
+		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
 
 		//Tmp out directories
 		p.setOutDirectory(OUT_PATH);
@@ -40,7 +40,7 @@ public class AvlTreeParametersNoinv extends ParametersModifier {
 		
 		//Parallelism
 		p.setRedundanceEvosuite(1);
-		p.setParallelismEvosuite(20);
+		p.setParallelismEvosuite(2);
 		
 		//Timeout
 		p.setGlobalBudget(7200);
@@ -49,7 +49,7 @@ public class AvlTreeParametersNoinv extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "avl_tree_noinv.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "avl_tree_accurate.jbse", p);
 		p.setHeapScope("avl_tree/AvlNode", 5);
 	}							 
 

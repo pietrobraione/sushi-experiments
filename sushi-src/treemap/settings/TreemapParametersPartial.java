@@ -1,8 +1,7 @@
-package ganttproject.settings;
+package treemap.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
-import static common.Settings.GUAVA_PATH;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
@@ -23,7 +22,7 @@ import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
 import sushi.logging.Level;
 
-public class GanttprojectParameters extends ParametersModifier {
+public class TreemapParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
@@ -32,16 +31,16 @@ public class GanttprojectParameters extends ParametersModifier {
 		p.setZ3Path(Z3_PATH);
 
 		//Target 
-		p.setClassesPath(BIN_PATH, JBSE_PATH, GUAVA_PATH);
+		p.setClassesPath(BIN_PATH, JBSE_PATH);
 		p.setJREPath(JRE_PATH);
-		p.setTargetClass("ganttproject/DependencyGraph");
-
+		p.setTargetClass("treemap/TreeMap");
+		
 		//Analysis params 
-		p.setEvosuiteBudget(3600);
+		p.setEvosuiteBudget(360);
 		p.setJBSEBudget(3600);
+		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.DEBUG);
-		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
+		p.setLogLevel(Level.INFO);
 		
 		//Tmp out directories
 		p.setOutDirectory(OUT_PATH);
@@ -49,35 +48,29 @@ public class GanttprojectParameters extends ParametersModifier {
 		
 		//Parallelism
 		p.setRedundanceEvosuite(1);
-		p.setParallelismEvosuite(2);
+		p.setParallelismEvosuite(20);
 		
 		//Timeout
 		p.setGlobalBudget(7200);
 	}
 
+
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
-		loadHEXFile(SETTINGS_PATH + "ganttproject.jbse", p);
-		p.setHeapScope("ganttproject/Node", 3);
-		p.setHeapScope("ganttproject/NodeData", 5);
-		p.setHeapScope("ganttproject/GraphData", 2);
-		p.setHeapScope("ganttproject/ExplicitDependencyImpl", 1);
-		p.setHeapScope("ganttproject/ImplicitInheritedDependency", 1);
-		p.setHeapScope("ganttproject/ImplicitSubSuperTaskDependency", 1);
-		p.setDepthScope(55);
-	}	
-	
-	@Override
-	public void modify(MergerParameters p) {
-		p.setBranchesToCover("ganttproject/DependencyGraph.*");
+		loadHEXFile(SETTINGS_PATH + "tree_map_partial.jbse", p);
+		p.setHeapScope("treemap/TreeMap$Entry", 5); 				
+		p.setDepthScope(500);
+		p.setCountScope(6000);
 	}
 
+	@Override
+	public void modify(MergerParameters p) {
+		p.setBranchesToCover("treemap/TreeMap(?!.*HEXTriggers.*$).*");
+	}
 
 	@Override
 	public void modify(List<String> p) {
 		p.add("-Dobject_reuse_probability=0.8");
-		p.add("-Delite=5");
 	}
 }

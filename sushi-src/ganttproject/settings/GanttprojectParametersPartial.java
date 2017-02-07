@@ -1,7 +1,8 @@
-package tsafe.settings;
+package ganttproject.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
+import static common.Settings.GUAVA_PATH;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
@@ -14,10 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import jbse.rewr.RewriterAbsSum;
-import jbse.rewr.RewriterPolynomials;
-import jbse.rewr.RewriterSinCos;
-import jbse.rewr.RewriterSqrt;
 import sushi.configure.Coverage;
 import sushi.configure.JBSEParameters;
 import sushi.configure.MergerParameters;
@@ -26,7 +23,7 @@ import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
 import sushi.logging.Level;
 
-public class TsafeParametersNoinv extends ParametersModifier {
+public class GanttprojectParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
@@ -35,21 +32,21 @@ public class TsafeParametersNoinv extends ParametersModifier {
 		p.setZ3Path(Z3_PATH);
 
 		//Target 
-		p.setClassesPath(BIN_PATH, JBSE_PATH);
+		p.setClassesPath(BIN_PATH, JBSE_PATH, GUAVA_PATH);
 		p.setJREPath(JRE_PATH);
-		p.setTargetClass("tsafe/Driver_TS_R");
-		
+		p.setTargetClass("ganttproject/DependencyGraph");
+
 		//Analysis params 
-		p.setEvosuiteBudget(240);
+		p.setEvosuiteBudget(120);
 		p.setJBSEBudget(3600);
 		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
 		p.setLogLevel(Level.INFO);
-
+		
 		//Tmp out directories
 		p.setOutDirectory(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
-
+		
 		//Parallelism
 		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(20);
@@ -62,16 +59,21 @@ public class TsafeParametersNoinv extends ParametersModifier {
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
 		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
-		loadHEXFile(SETTINGS_PATH + "tsafe_noinv.jbse", p);
-		p.setDoSignAnalysis(true);
-		p.addRewriter(RewriterPolynomials.class, RewriterSinCos.class, RewriterSqrt.class, RewriterAbsSum.class);
-		p.setHeapScope("common/LinkedList$Entry", 3);
-	}
-
+		loadHEXFile(SETTINGS_PATH + "ganttproject_partial.jbse", p);
+		p.setHeapScope("ganttproject/Node", 3);
+		p.setHeapScope("ganttproject/NodeData", 5);
+		p.setHeapScope("ganttproject/GraphData", 2);
+		p.setHeapScope("ganttproject/ExplicitDependencyImpl", 1);
+		p.setHeapScope("ganttproject/ImplicitInheritedDependency", 1);
+		p.setHeapScope("ganttproject/ImplicitSubSuperTaskDependency", 1);
+		p.setDepthScope(55);
+	}	
+	
 	@Override
 	public void modify(MergerParameters p) {
-		p.setBranchesToCover("tsafe/Driver_TS_R.*");
+		p.setBranchesToCover("ganttproject/DependencyGraph.*");
 	}
+
 
 	@Override
 	public void modify(List<String> p) {

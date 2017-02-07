@@ -1,4 +1,4 @@
-package treemap.settings;
+package node_caching_linked_list.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
@@ -22,7 +22,7 @@ import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
 import sushi.logging.Level;
 
-public class TreemapParametersNoinv extends ParametersModifier {
+public class NodeCachingLinkedListParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
@@ -33,10 +33,10 @@ public class TreemapParametersNoinv extends ParametersModifier {
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
 		p.setJREPath(JRE_PATH);
-		p.setTargetClass("treemap/TreeMap");
-		
+		p.setTargetClass("node_caching_linked_list/NodeCachingLinkedList");
+
 		//Analysis params 
-		p.setEvosuiteBudget(360);
+		p.setEvosuiteBudget(300);
 		p.setJBSEBudget(3600);
 		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
@@ -58,15 +58,15 @@ public class TreemapParametersNoinv extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "tree_map_noinv.jbse", p);
-		p.setHeapScope("treemap/TreeMap$Entry", 5); 				
-		p.setDepthScope(500);
-		p.setCountScope(6000);
+		loadHEXFile(SETTINGS_PATH + "node_caching_linked_list_partial.jbse", p);
+		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
+		p.setDepthScope(50);
+		p.setCountScope(600);
 	}
 
 	@Override
 	public void modify(MergerParameters p) {
-		p.setBranchesToCover("treemap/TreeMap(?!.*HEXTriggers.*$).*");
+		p.setBranchesToCover("node_caching_linked_list/NodeCachingLinkedList.*");
 	}
 
 	@Override

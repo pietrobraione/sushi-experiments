@@ -22,7 +22,7 @@ import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
 import sushi.logging.Level;
 
-public class NodeCachingLinkedListParameters extends ParametersModifier {
+public class NodeCachingLinkedListParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
@@ -58,7 +58,7 @@ public class NodeCachingLinkedListParameters extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "node_caching_linked_list.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "node_caching_linked_list_accurate.jbse", p);
 		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
 		p.setDepthScope(50);
 		p.setCountScope(600);
