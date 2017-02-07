@@ -1,7 +1,5 @@
 package avl_tree;
 
-import jbse.meta.Analysis;
-
 /**
  * Implements an AVL tree. Note that all "matching" is based on the compareTo
  * method.

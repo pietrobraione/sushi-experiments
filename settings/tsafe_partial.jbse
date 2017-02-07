@@ -1,0 +1,15 @@
+init begin
+-- driver is not yet loaded
+tsafe/Driver_TS_R
+end
+
+resolve begin
+-- abstract calculators are expanded to concrete ones
+instanceof tsafe/EngineCalculator expands to instanceof tsafe/SimpleCalculator,
+
+-- all the elements in a tsafe.Route have class tsafe.Fix
+{R_ANY}/fixes/header(/next|/previous)+/element instanceof java/lang/Object expands to instanceof tsafe/Fix,
+
+-- for all the entries e, e.element is not an entry
+{R_ANY}/header(/next|/previous)*/element instanceof java/lang/Object aliases {ROOT}:(?!.*header(/next|/previous)*$).*
+end
