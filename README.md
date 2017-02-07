@@ -23,10 +23,10 @@ The project contains a set of Eclipse launch configurations that can be used to 
 * Sushi_AvlTree_accurate.launch for the AvlTree experiment with accurate invariants;
 * Sushi_AvlTree_partial.launch for the AvlTree experiment with partial invariants;
 * Sushi_DllHard.launch for the doubly linked list example;
-* Sushi_GanttProject_<accurate|partial>.launch for the GanttProject experiment with accurate/partial invariants;
-* Sushi_NodeCachingLinkedList_<accurate|partial>.launch for the NodeCachingLinkedList experiment with accurate/partial invariants;
-* Sushi_TreeMap_<accurate|partial>.launch for the TreeMap experiment with accurate/partial invariants;
-* Sushi_Tsafe_TS_R_3_<accurate|partial>.launch for the TSAFE experiment with accurate/partial invariants.
+* Sushi_GanttProject_&lt;accurate|partial&gt;.launch for the GanttProject experiment with accurate/partial invariants;
+* Sushi_NodeCachingLinkedList_&lt;accurate|partial&gt;.launch for the NodeCachingLinkedList experiment with accurate/partial invariants;
+* Sushi_TreeMap_&lt;accurate|partial&gt;.launch for the TreeMap experiment with accurate/partial invariants;
+* Sushi_Tsafe_TS_R_3_&lt;accurate|partial&gt;.launch for the TSAFE experiment with accurate/partial invariants.
 
 You will also find an Eclipse launch configuration Sushi_help.launch, that launches SUSHI without parameters 
 so it prints a help screen on the console.
