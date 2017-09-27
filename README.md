@@ -9,7 +9,7 @@ list, node caching linked list, and treemap), GanttProject, and TSAFE.
 
 This repository contains an Eclipse project that is configured to work together with the Eclipse projects for 
 [SUSHI](https://github.com/pietrobraione/sushi). 
-Install Eclipse and the EGit plugin, then import in an empty Eclipse workspace the project in the SUSHI repository, 
+Install Eclipse and the EGit plugin, then import in an empty Eclipse workspace the projects in the SUSHI repository, 
 by following the instructions in the README file in it. Fix the dependencies for the SUSHI projects (again, 
 refer to the README file). Finally, import this repository in the same workspace: On the Eclipse main menu select 
 File > Import..., in the dialog that pops up select Projects from Git, insert the URI of this repository, and when 
