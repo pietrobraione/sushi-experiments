@@ -37,7 +37,7 @@ public class TsafeParametersPartial extends ParametersModifier {
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
 		p.setJREPath(JRE_PATH);
-		p.setTargetClass("tsafe/Driver_TS_R");
+		p.setTargetClass("tsafe/TsafeLauncher");
 		
 		//Analysis params 
 		p.setEvosuiteBudget(240);
@@ -51,7 +51,6 @@ public class TsafeParametersPartial extends ParametersModifier {
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
 
 		//Parallelism
-		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(20);
 		
 		//Timeout
@@ -70,7 +69,7 @@ public class TsafeParametersPartial extends ParametersModifier {
 
 	@Override
 	public void modify(MergerParameters p) {
-		p.setBranchesToCover("tsafe/Driver_TS_R.*");
+		p.setBranchesToCover("tsafe/TsafeLauncher.*");
 	}
 
 	@Override

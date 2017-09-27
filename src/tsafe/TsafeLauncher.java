@@ -8,32 +8,30 @@ import static jbse.meta.Analysis.fail;
  * @author Pietro Braione
  *
  */
-public class Driver_TS_R {	
+public class TsafeLauncher {	
 	//Methods to test
 	
-	public void TS_R_3(TrajectorySynthesizer trajSynth, RouteTrack track, Route route) throws Exception {
-		Trajectory traj = invoke_TS_R(trajSynth, track, route);
-		if (!assertion_3(traj, trajSynth, route)) {
+	/**
+	 * This checks the property TS_R_3, see <a href="https://doi.org/10.1145/2491411.2491433">Braione et al. 2013</a>.
+	 * 
+	 * @param trajSynth a {@link TrajectorySynthesizer}.
+	 * @param routeTrack a {@link RouteTrack}.
+	 * @param route a {@link Route}.
+	 */
+	public void checkTrajectorySynthesis(TrajectorySynthesizer trajSynth, RouteTrack routeTrack, Route route) {
+		//assumes preconditions
+		assumePreconditions(trajSynth, routeTrack, route);
+		
+		//invokes target method
+		final Trajectory traj = trajSynth.getRouteTrajectory(routeTrack, route);
+
+		//checks assertion
+		if (!trajEndsCorrectly(traj, trajSynth, route)) {
 			fail();
 		}
 	}
 
-	//private methods
-	
-	private Trajectory invoke_TS_R(TrajectorySynthesizer trajSynth, RouteTrack track, Route route) throws Exception {
-		//assumes preconditions
-		assume_TS_R_preconditions(trajSynth, track, route);
-		
-		//target invocation
-		return trajSynth.getRouteTrajectory(track, route);
-	}
-	
-	private void assume_TS_R_preconditions(TrajectorySynthesizer trajSynth, RouteTrack track, Route route) {
-		assume(trajSynth.params.tsTimeHorizon > 0);
-		assume(track.getSpeed() > 0);
-		assume(collinear(trajSynth, track.getPrevFix(), track.getNextFix(), new Point2D(track.getLatitude(), track.getLongitude())));
-		assume(inRectangle(trajSynth, track.getPrevFix(), track.getNextFix(), new Point2D(track.getLatitude(), track.getLongitude())));
-	}
+	//Private methods
 	
 	private void assume(boolean b) {
 		if (!b) {
@@ -41,19 +39,26 @@ public class Driver_TS_R {
 		}
 	}
 
-	private boolean assertion_3(Trajectory traj, TrajectorySynthesizer trajSynth, Route route) {
+	private void assumePreconditions(TrajectorySynthesizer trajSynth, RouteTrack routeTrack, Route route) {
+		assume(trajSynth.params.tsTimeHorizon > 0);
+		assume(routeTrack.getSpeed() > 0);
+		assume(collinear(trajSynth, routeTrack.getPrevFix(), routeTrack.getNextFix(), new Point2D(routeTrack.getLatitude(), routeTrack.getLongitude())));
+		assume(inRectangle(trajSynth, routeTrack.getPrevFix(), routeTrack.getNextFix(), new Point2D(routeTrack.getLatitude(), routeTrack.getLongitude())));
+	}
+	
+	private boolean trajEndsCorrectly(Trajectory traj, TrajectorySynthesizer trajSynth, Route route) {
 		Point4D lastPoint = traj.lastPoint();
-		final boolean _TRAJ_TRAVELS_MAX_TIME = lastPoint.getTime() == traj.firstPoint().getTime() + trajSynth.params.tsTimeHorizon;
-		final boolean _TRAJ_ENDS_AT_ROUTE_END;
-		if (_TRAJ_TRAVELS_MAX_TIME) {
-			_TRAJ_ENDS_AT_ROUTE_END = false;
+		final boolean trajTravelsMaxTime = lastPoint.getTime() == traj.firstPoint().getTime() + trajSynth.params.tsTimeHorizon;
+		final boolean trajReachesLastFix;
+		if (trajTravelsMaxTime) {
+			trajReachesLastFix = false;
 		} else if (route.isEmpty()) {
-			_TRAJ_ENDS_AT_ROUTE_END = false;
+			trajReachesLastFix = false;
 		} else {
 			Fix lastFix = route.lastFix();
-			_TRAJ_ENDS_AT_ROUTE_END = lastFix.getLatitude() == lastPoint.getLatitude() && lastFix.getLongitude() == lastPoint.getLongitude();
+			trajReachesLastFix = lastFix.getLatitude() == lastPoint.getLatitude() && lastFix.getLongitude() == lastPoint.getLongitude();
 		}
-		return (_TRAJ_TRAVELS_MAX_TIME || _TRAJ_ENDS_AT_ROUTE_END); 
+		return (trajTravelsMaxTime || trajReachesLastFix); 
 	}
 	
 	/**

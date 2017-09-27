@@ -37,7 +37,7 @@ public class TsafeParametersAccurate extends ParametersModifier {
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
 		p.setJREPath(JRE_PATH);
-		p.setTargetClass("tsafe/Driver_TS_R");
+		p.setTargetClass("tsafe/TsafeLauncher");
 		
 		//Analysis params 
 		p.setEvosuiteBudget(3600);
