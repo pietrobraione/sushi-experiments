@@ -10,6 +10,7 @@ public final class Settings {
 	public static final Path GUAVA_PATH      = GIT_REPO_ROOT.resolve(Paths.get("sushi-experiments", "lib", "ganttproject-guava.jar"));
 	public static final Path TMP_BASE_PATH   = GIT_REPO_ROOT.resolve(Paths.get("sushi-experiments", "sushi-out"));
 	public static final Path EVOSUITE_PATH   = GIT_REPO_ROOT.resolve(Paths.get("sushi", "evosuite", "evosuite-shaded-1.0.3.jar"));
+	public static final Path EVOSUITE_MOSA_PATH   = GIT_REPO_ROOT.resolve(Paths.get("sushi", "evosuite", "evosuite-shaded-1.0.6-SNAPSHOT.jar"));
 	public static final Path JRE_PATH        = GIT_REPO_ROOT.resolve(Paths.get("sushi", "jbse", "data", "jre", "rt.jar"));	
 	public static final Path SUSHI_LIB_PATH  = GIT_REPO_ROOT.resolve(Paths.get("sushi", "runtime", "target", "classes"));
 	public static final Path Z3_PATH         = Paths.get("/opt", "local", "bin", "z3");
