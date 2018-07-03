@@ -2,6 +2,7 @@ package dll_hard.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
+import static common.Settings.EVOSUITE_MOSA_PATH;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
@@ -26,7 +27,7 @@ public class DllHardParameters extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
-		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setEvosuitePath(EVOSUITE_MOSA_PATH);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setZ3Path(Z3_PATH);
 
@@ -52,6 +53,8 @@ public class DllHardParameters extends ParametersModifier {
 		
 		//Timeout
 		p.setGlobalBudget(7200);
+		
+		p.setUseMOSA(true);
 	}
 
 	@Override

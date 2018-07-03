@@ -87,10 +87,10 @@ class TrajectorySynthesizer {
      * @return Route trajectory of flight:<br>
      *         Assumes flight adheres strictly to its route
      */
-    public Trajectory getRouteTrajectory(RouteTrack rt, Route r) {
+    public Trajectory getRouteTrajectory(RouteTrack track, Route r) {
         // Start trajectory at route track point
         Trajectory routeTraj = new Trajectory();
-        Point4D currPoint = rt.asPoint4D();
+        Point4D currPoint = track.asPoint4D();
         routeTraj.addPoint(currPoint);
 
         // Move cursor to the next fix in the route
@@ -99,9 +99,9 @@ class TrajectorySynthesizer {
 //MODI BEGIN
             //System.out.println("Trajectory Synthesizer: ROUTE HAS NO POINTS.");
 //MODI END
-            return getDeadReckoningTrajectory(rt);
+            return getDeadReckoningTrajectory(track);
         }
-        Fix nextFix = rt.getNextFix();
+        Fix nextFix = track.getNextFix();
         Fix f = (Fix)fixIter.next();
 //MODI BEGIN
         Fix f_prev = null;
@@ -118,14 +118,14 @@ class TrajectorySynthesizer {
         	                       f = (Fix)fixIter.next();}
 //MODI BEGIN
     	//TODO quite unclear what to do when f_prev == null reaches this point (i.e., when rt.next is the first point of the route)
-        final boolean _ROUTE_TRACK_SEGMENT_NOT_IN_ROUTE = force(!rt.getPrevFix().equals(f_prev));
+        final boolean _ROUTE_TRACK_SEGMENT_NOT_IN_ROUTE = force(!track.getPrevFix().equals(f_prev));
         assume(!_ROUTE_TRACK_SEGMENT_NOT_IN_ROUTE);
 //MODI END
 
         // Find the distance and time to the next fix
         /*MODI bug fix long*/ double timeElapsed = 0;
-        double dist = calc.distanceLL(rt.getLatitude(), rt.getLongitude(), nextFix);
-        /*MODI bug fix long*/ double timeToNextFix = /*MODI bug fix (long)*/ (dist / rt.getSpeed());
+        double dist = calc.distanceLL(track.getLatitude(), track.getLongitude(), nextFix);
+        /*MODI bug fix long*/ double timeToNextFix = /*MODI bug fix (long)*/ (dist / track.getSpeed());
 
         // If the time to the next fix is within the time horizon,
         // add this next fix location and expected time to the trajectory
@@ -135,7 +135,7 @@ class TrajectorySynthesizer {
 //MODI END
         if (timeToNextFix < params.tsTimeHorizon) {
             currPoint = new Point4D(nextFix.getLatitude(), nextFix.getLongitude(),
-                                    rt.getAltitude(), rt.getTime() + timeToNextFix);
+                                    track.getAltitude(), track.getTime() + timeToNextFix);
             routeTraj.addPoint(currPoint);
             timeElapsed = timeToNextFix;
 
@@ -148,7 +148,7 @@ class TrajectorySynthesizer {
             while(fixIter.hasNext()) {
                 nextFix = (Fix)fixIter.next();
                 dist = calc.distanceLL(currPoint.getLatitude(), currPoint.getLongitude(), nextFix);
-                timeToNextFix = /*MODI bug fix (long)*/ (dist / rt.getSpeed());
+                timeToNextFix = /*MODI bug fix (long)*/ (dist / track.getSpeed());
 
                 // If there is not enough time to reach the next fix,
                 // break out of the loop
@@ -163,7 +163,7 @@ class TrajectorySynthesizer {
 //                }
 //MODI END
                 currPoint = new Point4D(nextFix.getLatitude(), nextFix.getLongitude(),
-                                        rt.getAltitude(), rt.getTime() + timeElapsed + timeToNextFix);
+                                        track.getAltitude(), track.getTime() + timeElapsed + timeToNextFix);
                 routeTraj.addPoint(currPoint);
                 timeElapsed += timeToNextFix;
             }
@@ -191,7 +191,7 @@ class TrajectorySynthesizer {
             double heading = calc.angleLL(currPoint.getLatitude(), currPoint.getLongitude(), nextFix);
             FlightTrack lastTrack =
                 new FlightTrack(currPoint.getLatitude(), currPoint.getLongitude(),
-                                rt.getAltitude(), currPoint.getTime(), rt.getSpeed(), heading);
+                                track.getAltitude(), currPoint.getTime(), track.getSpeed(), heading);
             Point4D end = deadReckon(lastTrack, params.tsTimeHorizon - timeElapsed);
             routeTraj.addPoint(end);
         }

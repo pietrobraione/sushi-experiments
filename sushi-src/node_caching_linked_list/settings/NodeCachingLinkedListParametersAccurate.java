@@ -2,6 +2,7 @@ package node_caching_linked_list.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
+import static common.Settings.EVOSUITE_MOSA_PATH;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
@@ -52,6 +53,8 @@ public class NodeCachingLinkedListParametersAccurate extends ParametersModifier 
 		
 		//Timeout
 		p.setGlobalBudget(7200);
+		
+		//p.setUseMOSA(true);
 	}
 
 

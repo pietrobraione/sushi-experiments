@@ -1,14 +1,18 @@
 package tsafe;
 
 import static jbse.meta.Analysis.fail;
+import static jbse.meta.Analysis.ignore;
+
+import org.junit.Assert;
+import org.junit.Assume;
 
 /**
- * Drivers for TS_R_* properties.
+ * Drivers for TS_R_3 property.
  * 
  * @author Pietro Braione
  *
  */
-public class TsafeLauncher {	
+public class TsafeTrajectorySynthesis {	
 	//Methods to test
 	
 	/**
@@ -27,7 +31,7 @@ public class TsafeLauncher {
 
 		//checks assertion
 		if (!trajEndsCorrectly(traj, trajSynth, route)) {
-			fail();
+			Assert.fail(null); 
 		}
 	}
 
@@ -35,7 +39,7 @@ public class TsafeLauncher {
 	
 	private void assume(boolean b) {
 		if (!b) {
-			throw new RuntimeException("Assumption violated");
+			Assume.assumeTrue(false);
 		}
 	}
 

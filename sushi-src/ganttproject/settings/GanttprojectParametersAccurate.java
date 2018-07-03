@@ -1,15 +1,6 @@
 package ganttproject.settings;
 
-import static common.Settings.BIN_PATH;
-import static common.Settings.EVOSUITE_PATH;
-import static common.Settings.GUAVA_PATH;
-import static common.Settings.JBSE_PATH;
-import static common.Settings.JRE_PATH;
-import static common.Settings.OUT_PATH;
-import static common.Settings.SETTINGS_PATH;
-import static common.Settings.SUSHI_LIB_PATH;
-import static common.Settings.TMP_BASE_PATH;
-import static common.Settings.Z3_PATH;
+import static common.Settings.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,7 +18,7 @@ public class GanttprojectParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
-		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setEvosuitePath(EVOSUITE_MOSA_PATH);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setZ3Path(Z3_PATH);
 
@@ -53,6 +44,8 @@ public class GanttprojectParametersAccurate extends ParametersModifier {
 		
 		//Timeout
 		p.setGlobalBudget(7200);
+		
+		p.setUseMOSA(true);
 	}
 
 	@Override
@@ -78,6 +71,6 @@ public class GanttprojectParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(List<String> p) {
 		p.add("-Dobject_reuse_probability=0.8");
-		p.add("-Delite=5");
+		//p.add("-Delite=5");
 	}
 }

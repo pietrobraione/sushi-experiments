@@ -37,7 +37,7 @@ public class TsafeParametersPartial extends ParametersModifier {
 		//Target 
 		p.setClassesPath(BIN_PATH, JBSE_PATH);
 		p.setJREPath(JRE_PATH);
-		p.setTargetClass("tsafe/TsafeLauncher");
+		p.setTargetClass("tsafe/TsafeTrajectorySynthesis");
 		
 		//Analysis params 
 		p.setEvosuiteBudget(240);
