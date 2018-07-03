@@ -3,9 +3,6 @@ package ganttproject;
 import static jbse.meta.Analysis.assume;
 import static jbse.meta.Analysis.assumeClassNotInitialized;
 
-import sushi.logging.Level;
-import sushi.logging.Logger;
-
 public class Driver {
 	private DependencyGraph g;
 	private Node root;
@@ -20,8 +17,8 @@ public class Driver {
 	}
 	
 	public boolean test() {
-		assumeClassNotInitialized("ganttproject/Task");
-		assumeClassNotInitialized("ganttproject/DependencyGraph$Node");
+		assumeClassNotInitialized(Task.class);
+		assumeClassNotInitialized(Node.class);
     	this.g = new DependencyGraph();
     	Transaction t = new Transaction();
     	this.root = new Node(new TaskImpl(null, 0), t);

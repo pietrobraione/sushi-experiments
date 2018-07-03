@@ -63,7 +63,7 @@ public class RunGanttProject {
 			System.err.println("Error while closing settings file.");
 			System.exit(3);
 		}
-		p.addClasspath(classPath);
+		p.addUserClasspath(classPath);
 		p.addSourcePath(sourcePath);
 		p.setMethodSignature(targetMethodClass, targetMethodParamsSig, targetMethodName);
 		//p.setMethodSignature(guidanceMethodClass, guidanceMethodParamsSig, guidanceMethodName);
