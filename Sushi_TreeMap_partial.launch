@@ -10,6 +10,6 @@
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="sushi.Main"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-params_modifier_path ./bin -params_modifier_class treemap.settings.TreemapParametersPartial"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="sushi-master"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="master"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:sushi-experiments}"/>
 </launchConfiguration>
