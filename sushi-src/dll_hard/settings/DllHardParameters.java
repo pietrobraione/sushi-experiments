@@ -4,7 +4,6 @@ import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
 import static common.Settings.EVOSUITE_MOSA_PATH;
 import static common.Settings.JBSE_PATH;
-import static common.Settings.JRE_PATH;
 import static common.Settings.OUT_PATH;
 import static common.Settings.SETTINGS_PATH;
 import static common.Settings.SUSHI_LIB_PATH;
@@ -29,11 +28,11 @@ public class DllHardParameters extends ParametersModifier {
 		//Local configurations
 		p.setEvosuitePath(EVOSUITE_MOSA_PATH);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
+		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
 
 		//Target
-		p.setClassesPath(BIN_PATH, JBSE_PATH);
-		p.setJREPath(JRE_PATH);
+		p.setClassesPath(BIN_PATH);
 		p.setTargetMethod("dll_hard/Main", "(Lcommon/LinkedList;Ljava/lang/Object;)V", "sample");
 
 		//Analysis params 

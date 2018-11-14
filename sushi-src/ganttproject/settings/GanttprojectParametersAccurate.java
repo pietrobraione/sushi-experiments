@@ -20,11 +20,11 @@ public class GanttprojectParametersAccurate extends ParametersModifier {
 		//Local configurations
 		p.setEvosuitePath(EVOSUITE_MOSA_PATH);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
+		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
 
 		//Target 
-		p.setClassesPath(BIN_PATH, JBSE_PATH, GUAVA_PATH);
-		p.setJREPath(JRE_PATH);
+		p.setClassesPath(BIN_PATH, GUAVA_PATH);
 		p.setTargetClass("ganttproject/DependencyGraph");
 
 		//Analysis params 
