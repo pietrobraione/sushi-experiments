@@ -11,10 +11,6 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=sushi-experiments/src&lt;avl_tree"/>
-        <javaElement handleIdentifier="=sushi-experiments/src&lt;dll_hard"/>
-        <javaElement handleIdentifier="=sushi-experiments/src&lt;tsafe"/>
-        <javaElement handleIdentifier="=sushi-experiments/src&lt;doubly_linked_list"/>
-        <javaElement handleIdentifier="=sushi-experiments/src&lt;ganttproject"/>
+        <javaElement handleIdentifier="=sushi-experiments/src"/>
     </selectedElements>
 </jardesc>
