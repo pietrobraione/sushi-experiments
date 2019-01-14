@@ -57,7 +57,7 @@ public class TreemapParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "tree_map_partial.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("tree_map_partial.jbse").toString(), p);
 		p.setHeapScope("treemap/TreeMap$Entry", 5); 				
 		p.setDepthScope(500);
 		p.setCountScope(6000);

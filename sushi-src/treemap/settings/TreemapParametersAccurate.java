@@ -1,7 +1,6 @@
 package treemap.settings;
 
 import static common.Settings.BIN_PATH;
-import static common.Settings.EVOSUITE_MOSA_PATH;
 import static common.Settings.EVOSUITE_PATH;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.OUT_PATH;
@@ -52,15 +51,13 @@ public class TreemapParametersAccurate extends ParametersModifier {
 		
 		//Timeout
 		p.setGlobalBudget(7200);
-		
-		//p.setUseMOSA(true);
 	}
 
 
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "tree_map_accurate.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("tree_map_accurate.jbse").toString(), p);
 		p.setHeapScope("treemap/TreeMap$Entry", 5); 				
 		p.setDepthScope(500);
 		p.setCountScope(6000);

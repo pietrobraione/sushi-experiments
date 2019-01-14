@@ -59,8 +59,8 @@ public class TsafeParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
-		loadHEXFile(SETTINGS_PATH + "tsafe_partial.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("tsafe_partial.jbse").toString(), p);
 		p.setDoSignAnalysis(true);
 		p.addRewriter(RewriterPolynomials.class, RewriterSinCos.class, RewriterSqrt.class, RewriterAbsSum.class);
 		p.setHeapScope("common/LinkedList$Entry", 3);

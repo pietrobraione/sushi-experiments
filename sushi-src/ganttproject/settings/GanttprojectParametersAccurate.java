@@ -18,7 +18,7 @@ public class GanttprojectParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
-		p.setEvosuitePath(EVOSUITE_MOSA_PATH);
+		p.setEvosuitePath(EVOSUITE_PATH);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -44,15 +44,13 @@ public class GanttprojectParametersAccurate extends ParametersModifier {
 		
 		//Timeout
 		p.setGlobalBudget(7200);
-		
-		p.setUseMOSA(true);
 	}
 
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
-		loadHEXFile(SETTINGS_PATH + "ganttproject_accurate.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("ganttproject_accurate.jbse").toString(), p);
 		p.setHeapScope("ganttproject/Node", 3);
 		p.setHeapScope("ganttproject/NodeData", 5);
 		p.setHeapScope("ganttproject/GraphData", 2);

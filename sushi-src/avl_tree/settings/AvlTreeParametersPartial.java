@@ -49,7 +49,7 @@ public class AvlTreeParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "avl_tree_partial.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("avl_tree_partial.jbse").toString(), p);
 		p.setHeapScope("avl_tree/AvlNode", 5);
 	}							 
 
