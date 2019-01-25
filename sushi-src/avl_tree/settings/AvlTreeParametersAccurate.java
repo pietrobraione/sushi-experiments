@@ -19,6 +19,7 @@ public class AvlTreeParametersAccurate extends ParametersModifier {
 	public void modify(Options p) {
 		//Local configurations
 		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);

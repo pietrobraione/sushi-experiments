@@ -6,7 +6,6 @@ import java.io.IOException;
 import jbse.apps.run.RunParameters;
 import jbse.apps.run.Run;
 import jbse.apps.run.RunParameters.DecisionProcedureType;
-import jbse.apps.run.RunParameters.InteractionMode;
 import jbse.apps.run.RunParameters.StateFormatMode;
 import jbse.apps.run.RunParameters.StepShowMode;
 import jbse.apps.settings.ParseException;
