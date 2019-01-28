@@ -27,6 +27,7 @@ public class GanttprojectParametersPartial extends ParametersModifier {
 	public void modify(Options p) {
 		//Local configurations
 		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -57,8 +58,8 @@ public class GanttprojectParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
-		loadHEXFile(SETTINGS_PATH + "ganttproject_partial.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("ganttproject_partial.jbse").toString(), p);
 		p.setHeapScope("ganttproject/Node", 3);
 		p.setHeapScope("ganttproject/NodeData", 5);
 		p.setHeapScope("ganttproject/GraphData", 2);

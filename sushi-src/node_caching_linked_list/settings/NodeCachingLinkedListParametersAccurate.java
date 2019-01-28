@@ -2,7 +2,6 @@ package node_caching_linked_list.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
-import static common.Settings.EVOSUITE_MOSA_PATH;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.OUT_PATH;
 import static common.Settings.SETTINGS_PATH;
@@ -27,6 +26,7 @@ public class NodeCachingLinkedListParametersAccurate extends ParametersModifier 
 	public void modify(Options p) {
 		//Local configurations
 		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -52,15 +52,13 @@ public class NodeCachingLinkedListParametersAccurate extends ParametersModifier 
 		
 		//Timeout
 		p.setGlobalBudget(7200);
-		
-		//p.setUseMOSA(true);
 	}
 
 
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "node_caching_linked_list_accurate.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("node_caching_linked_list_accurate.jbse").toString(), p);
 		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
 		p.setDepthScope(50);
 		p.setCountScope(600);

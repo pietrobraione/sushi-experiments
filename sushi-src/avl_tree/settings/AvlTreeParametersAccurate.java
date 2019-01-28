@@ -18,7 +18,8 @@ public class AvlTreeParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
-		p.setEvosuitePath(EVOSUITE_MOSA_PATH);
+		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -42,8 +43,6 @@ public class AvlTreeParametersAccurate extends ParametersModifier {
 		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(2);
 		
-		p.setUseMOSA(true);
-		
 		//Timeout
 		p.setGlobalBudget(7200);
 	}
@@ -51,7 +50,7 @@ public class AvlTreeParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "avl_tree_accurate.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("avl_tree_accurate.jbse").toString(), p);
 		p.setHeapScope("avl_tree/AvlNode", 5);
 	}							 
 
