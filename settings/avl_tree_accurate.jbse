@@ -1,17 +1,17 @@
 resolve begin
 
-{R_ANY}/root(/left|/right)* instanceof avl_tree/AvlNode aliases nothing,
-{R_ANY}/root instanceof avl_tree/AvlNode expands to instanceof avl_tree/AvlNode triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_AvlNode_onRoot:{$REF},
-{R_ANY}/root(/left|/right)*/left instanceof avl_tree/AvlNode expands to instanceof avl_tree/AvlNode triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_AvlNode_onTheLeft:{$REF},
-{R_ANY}/root(/left|/right)*/right instanceof avl_tree/AvlNode expands to instanceof avl_tree/AvlNode triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_AvlNode_onTheRight:{$REF},
-{R_ANY}/root(/left|/right)*/left instanceof avl_tree/AvlNode null triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_null_onTheLeft:{$REF}/{UP},
-{R_ANY}/root(/left|/right)*/right instanceof avl_tree/AvlNode null triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_null_onTheRight:{$REF}/{UP},
+{R_ANY}.avl_tree/AvlTree:root(.avl_tree/AvlNode:left|.avl_tree/AvlNode:right)* instanceof avl_tree/AvlNode aliases nothing;
+{R_ANY}.avl_tree/AvlTree:root instanceof avl_tree/AvlNode expands to instanceof avl_tree/AvlNode triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_AvlNode_onRoot:{$REF};
+{R_ANY}.avl_tree/AvlTree:root(.avl_tree/AvlNode:left|.avl_tree/AvlNode:right)*.avl_tree/AvlNode:left instanceof avl_tree/AvlNode expands to instanceof avl_tree/AvlNode triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_AvlNode_onTheLeft:{$REF};
+{R_ANY}.avl_tree/AvlTree:root(.avl_tree/AvlNode:left|.avl_tree/AvlNode:right)*.avl_tree/AvlNode:right instanceof avl_tree/AvlNode expands to instanceof avl_tree/AvlNode triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_AvlNode_onTheRight:{$REF};
+{R_ANY}.avl_tree/AvlTree:root(.avl_tree/AvlNode:left|.avl_tree/AvlNode:right)*.avl_tree/AvlNode:left instanceof avl_tree/AvlNode null triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_null_onTheLeft:{$REF}.{UP};
+{R_ANY}.avl_tree/AvlTree:root(.avl_tree/AvlNode:left|.avl_tree/AvlNode:right)*.avl_tree/AvlNode:right instanceof avl_tree/AvlNode null triggers avl_tree/AvlNode:(Lavl_tree/AvlNode;)V:_got_null_onTheRight:{$REF}.{UP};
 
 -- wellConnected
-{R_ANY}/root/parent instanceof avl_tree/AvlNode expands to nothing,
-{R_ANY}/root/parent instanceof avl_tree/AvlNode aliases nothing,
-{R_ANY}/root(/left|/right)+/parent instanceof avl_tree/AvlNode not null,
-{R_ANY}/root(/left|/right)+/parent instanceof avl_tree/AvlNode expands to nothing,
-{R_ANY}/root(/left|/right)+/parent instanceof avl_tree/AvlNode aliases {$REF}/{UP}/{UP}
+{R_ANY}.avl_tree/AvlTree:root.avl_tree/AvlNode:parent instanceof avl_tree/AvlNode expands to nothing;
+{R_ANY}.avl_tree/AvlTree:root.avl_tree/AvlNode:parent instanceof avl_tree/AvlNode aliases nothing;
+{R_ANY}.avl_tree/AvlTree:root(.avl_tree/AvlNode:left|.avl_tree/AvlNode:right)+.avl_tree/AvlNode:parent instanceof avl_tree/AvlNode not null;
+{R_ANY}.avl_tree/AvlTree:root(.avl_tree/AvlNode:left|.avl_tree/AvlNode:right)+.avl_tree/AvlNode:parent instanceof avl_tree/AvlNode expands to nothing;
+{R_ANY}.avl_tree/AvlTree:root(.avl_tree/AvlNode:left|.avl_tree/AvlNode:right)+.avl_tree/AvlNode:parent instanceof avl_tree/AvlNode aliases target {$REF}.{UP}.{UP};
 
-end
+resolve end
