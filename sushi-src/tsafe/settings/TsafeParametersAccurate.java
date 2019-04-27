@@ -77,6 +77,5 @@ public class TsafeParametersAccurate extends ParametersModifier {
 	public void modify(List<String> p) {
 		p.add("-Dobject_reuse_probability=0.8");
 		p.add("-Delite=5");
-		p.add("-Dcatch_undeclared_exceptions=false");
 	}
 }
