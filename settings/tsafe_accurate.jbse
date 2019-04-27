@@ -1,14 +1,14 @@
 init begin
 -- driver is not yet loaded
-tsafe/Driver_TS_R;
+tsafe/TsafeTrajectorySynthesis;
 init end
 
 resolve begin
 -- abstract calculators are expanded to concrete ones
 instanceof tsafe/EngineCalculator expands to instanceof tsafe/SimpleCalculator;
 
--- all the fixes in a tsafe.Route exist, have class tsafe.Fix, and may only alias the route track fixes
-{R_ANY}.fixes.header(.next|.previous)+.element instanceof java/lang/Object not null;
-{R_ANY}.fixes.header(.next|.previous)+.element instanceof java/lang/Object expands to instanceof tsafe/Fix;
-{R_ANY}.fixes.header(.next|.previous)+.element instanceof java/lang/Object aliases target {ROOT}:this.track(.prevFix|.nextFix);
+-- all the fixes in the input route exist, have class tsafe.Fix, and may only alias the input route track fixes
+{ROOT}:route.tsafe/Route:fixes.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object not null;
+{ROOT}:route.tsafe/Route:fixes.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof tsafe/Fix;
+{ROOT}:route.tsafe/Route:fixes.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object aliases target {ROOT}:routeTrack(.tsafe/RouteTrack:prevFix|.tsafe/RouteTrack:nextFix);
 resolve end

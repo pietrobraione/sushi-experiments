@@ -7,9 +7,9 @@ instanceof java/util/List expands to instanceof common/LinkedList triggers commo
 -- representation invariant for LinkedList
 
 -- defines the Entry._owner instrumentation field necessary to triggers
-{R_ANY}.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*._owner instanceof common/LinkedList not null;
-{R_ANY}.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*._owner instanceof common/LinkedList expands to nothing;
-{R_ANY}.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*._owner instanceof common/LinkedList aliases target {$R_ANY};
+{R_ANY}.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*.common/LinkedList$Entry:_owner instanceof common/LinkedList not null;
+{R_ANY}.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*.common/LinkedList$Entry:_owner instanceof common/LinkedList expands to nothing;
+{R_ANY}.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*.common/LinkedList$Entry:_owner instanceof common/LinkedList aliases target {$R_ANY};
 
 -- list header must exist and be distinct from other nodes
 {R_ANY}.common/LinkedList:header instanceof common/LinkedList$Entry not null;

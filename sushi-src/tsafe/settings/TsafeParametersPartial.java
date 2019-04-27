@@ -69,7 +69,7 @@ public class TsafeParametersPartial extends ParametersModifier {
 
 	@Override
 	public void modify(MergerParameters p) {
-		p.setBranchesToCover("tsafe/TsafeLauncher.*");
+		p.setBranchesToCover("tsafe/TsafeTrajectorySynthesis.*");
 	}
 
 	@Override
