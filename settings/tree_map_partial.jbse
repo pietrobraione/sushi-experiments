@@ -1,14 +1,14 @@
 resolve begin
 
 -- root/left/right entries expand and cannot be values
-{ROOT}:this/root(/left|/right)* instanceof treemap/TreeMap$Entry aliases nothing,
-{ROOT}:this/root(/left|/right)*/value instanceof java/lang/Object aliases {ROOT}:(?!.*root(/left|/right)*$).*,
+{ROOT}:this.treemap/TreeMap:root(.treemap/TreeMap$Entry:left|.treemap/TreeMap$Entry:right)* instanceof treemap/TreeMap$Entry aliases nothing;
+{ROOT}:this.treemap/TreeMap:root(.treemap/TreeMap$Entry:left|.treemap/TreeMap$Entry:right)*.value instanceof java/lang/Object aliases target {ROOT}:(?!{°}*treemap/TreeMap:root(.treemap/TreeMap$Entry:left|.treemap/TreeMap$Entry:right)*{EOL}){°}*;
 
 -- TreeMap.Entry.wellConnected
-{ROOT}:this/root/parent instanceof treemap/TreeMap$Entry expands to nothing,
-{ROOT}:this/root/parent instanceof treemap/TreeMap$Entry aliases nothing,
-{ROOT}:this/root(/left|/right)+/parent instanceof treemap/TreeMap$Entry not null,
-{ROOT}:this/root(/left|/right)+/parent instanceof treemap/TreeMap$Entry expands to nothing,
-{ROOT}:this/root(/left|/right)+/parent instanceof treemap/TreeMap$Entry aliases {$REF}/{UP}/{UP}
+{ROOT}:this.treemap/TreeMap:root.treemap/TreeMap$Entry:parent instanceof treemap/TreeMap$Entry expands to nothing;
+{ROOT}:this.treemap/TreeMap:root.treemap/TreeMap$Entry:parent instanceof treemap/TreeMap$Entry aliases nothing;
+{ROOT}:this.treemap/TreeMap:root(.treemap/TreeMap$Entry:left|.treemap/TreeMap$Entry:right)+.treemap/TreeMap$Entry:parent instanceof treemap/TreeMap$Entry not null;
+{ROOT}:this.treemap/TreeMap:root(.treemap/TreeMap$Entry:left|.treemap/TreeMap$Entry:right)+.treemap/TreeMap$Entry:parent instanceof treemap/TreeMap$Entry expands to nothing;
+{ROOT}:this.treemap/TreeMap:root(.treemap/TreeMap$Entry:left|.treemap/TreeMap$Entry:right)+.treemap/TreeMap$Entry:parent instanceof treemap/TreeMap$Entry aliases target {$REF}.{UP}.{UP};
 
-end
+resolve end

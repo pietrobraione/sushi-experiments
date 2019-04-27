@@ -19,6 +19,7 @@ public class AvlTreeParametersPartial extends ParametersModifier {
 	public void modify(Options p) {
 		//Local configurations
 		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -49,7 +50,7 @@ public class AvlTreeParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "avl_tree_partial.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("avl_tree_partial.jbse").toString(), p);
 		p.setHeapScope("avl_tree/AvlNode", 5);
 	}							 
 

@@ -2,7 +2,6 @@ package dll_hard.settings;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
-import static common.Settings.EVOSUITE_MOSA_PATH;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.OUT_PATH;
 import static common.Settings.SETTINGS_PATH;
@@ -26,7 +25,8 @@ public class DllHardParameters extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
-		p.setEvosuitePath(EVOSUITE_MOSA_PATH);
+		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -52,15 +52,13 @@ public class DllHardParameters extends ParametersModifier {
 		
 		//Timeout
 		p.setGlobalBudget(7200);
-		
-		p.setUseMOSA(true);
 	}
 
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "linked_list.jbse", p);
-		loadHEXFile(SETTINGS_PATH + "dll_hard.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("dll_hard.jbse").toString(), p);
 	}
 	
 	@Override

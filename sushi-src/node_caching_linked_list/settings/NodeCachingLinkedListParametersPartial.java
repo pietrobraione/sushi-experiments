@@ -26,6 +26,7 @@ public class NodeCachingLinkedListParametersPartial extends ParametersModifier {
 	public void modify(Options p) {
 		//Local configurations
 		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -57,7 +58,7 @@ public class NodeCachingLinkedListParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "node_caching_linked_list_partial.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("node_caching_linked_list_partial.jbse").toString(), p);
 		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
 		p.setDepthScope(50);
 		p.setCountScope(600);
