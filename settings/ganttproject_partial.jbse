@@ -8,5 +8,5 @@ instanceof ganttproject/Task expands to instanceof ganttproject/TaskImpl;
 {R_ANY}.{°}*:myData(.{°}*:myIncoming|.{°}*:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof ganttproject/ImplicitSubSuperTaskDependency;
 
 -- for all the entries e, e.element is not an entry
-{R_ANY}.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*.common/LinkedList$Entry:element instanceof java/lang/Object aliases target {ROOT}:(?!{°}*header(.next|.previous)*{EOL}){°}*;
+{R_ANY}.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*.common/LinkedList$Entry:element instanceof java/lang/Object aliases target {ROOT}:(?!{°}*common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)*{EOL}){°}*;
 resolve end
