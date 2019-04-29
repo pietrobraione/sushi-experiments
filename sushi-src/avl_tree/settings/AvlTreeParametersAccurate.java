@@ -2,7 +2,6 @@ package avl_tree.settings;
 
 import static common.Settings.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class AvlTreeParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("avl_tree_accurate.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("avl_tree_accurate.jbse"), p);
 		p.setHeapScope("avl_tree/AvlNode", 5);
 	}							 
 

@@ -2,7 +2,6 @@ package ganttproject.settings;
 
 import static common.Settings.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -50,8 +49,8 @@ public class GanttprojectParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse").toString(), p);
-		loadHEXFile(SETTINGS_PATH.resolve("ganttproject_accurate.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse"), p);
+		loadHEXFile(SETTINGS_PATH.resolve("ganttproject_accurate.jbse"), p);
 		p.setHeapScope("ganttproject/Node", 3);
 		p.setHeapScope("ganttproject/NodeData", 5);
 		p.setHeapScope("ganttproject/GraphData", 2);

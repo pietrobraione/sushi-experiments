@@ -9,7 +9,6 @@ import static common.Settings.SUSHI_LIB_PATH;
 import static common.Settings.TMP_BASE_PATH;
 import static common.Settings.Z3_PATH;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -57,8 +56,8 @@ public class DllHardParameters extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse").toString(), p);
-		loadHEXFile(SETTINGS_PATH.resolve("dll_hard.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse"), p);
+		loadHEXFile(SETTINGS_PATH.resolve("dll_hard.jbse"), p);
 	}
 	
 	@Override

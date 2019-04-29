@@ -9,7 +9,6 @@ import static common.Settings.SUSHI_LIB_PATH;
 import static common.Settings.TMP_BASE_PATH;
 import static common.Settings.Z3_PATH;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -58,7 +57,7 @@ public class NodeCachingLinkedListParametersAccurate extends ParametersModifier 
 	@Override
 	public void modify(JBSEParameters p) 
 	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("node_caching_linked_list_accurate.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("node_caching_linked_list_accurate.jbse"), p);
 		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
 		p.setDepthScope(50);
 		p.setCountScope(600);
