@@ -56,7 +56,7 @@ public class DllHardParameters extends ParametersModifier {
 
 	@Override
 	public void modify(JBSEParameters p) 
-	throws FileNotFoundException, ParseException, IOException {
+	throws ParseException, IOException {
 		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse").toString(), p);
 		loadHEXFile(SETTINGS_PATH.resolve("dll_hard.jbse").toString(), p);
 	}
