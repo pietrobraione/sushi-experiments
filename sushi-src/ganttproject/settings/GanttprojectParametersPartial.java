@@ -65,7 +65,14 @@ public class GanttprojectParametersPartial extends ParametersModifier {
 		p.setHeapScope("ganttproject/ExplicitDependencyImpl", 1);
 		p.setHeapScope("ganttproject/ImplicitInheritedDependency", 1);
 		p.setHeapScope("ganttproject/ImplicitSubSuperTaskDependency", 1);
-		p.setDepthScope(55);
+		//in the ISSTA 2017 paper it was p.setDepthScope(55);
+		//here we use a better alternative: we fix a heap scope (that is
+		//more stable w.r.t. changes in the standard library) and we put 
+		//the minimum heap scope that excludes only the diverging trace
+		//(i.e., if we increment the depth scope we do not obtain more traces)
+		p.setHeapScope("common/LinkedList$Entry", 6);
+		p.setHeapScope("ganttproject/DependencyEdge", 5);
+		p.setDepthScope(250);
 	}	
 	
 	@Override

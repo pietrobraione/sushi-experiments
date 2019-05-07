@@ -2,60 +2,71 @@ resolve begin
 
 instanceof ganttproject/Task expands to instanceof ganttproject/TaskImpl;
 
-{R_ANY}.{°}*:myTask instanceof ganttproject/Task not null;
-{R_ANY}.{°}*:myData instanceof ganttproject/NodeData not null;
-{R_ANY}.{°}*:myData instanceof ganttproject/NodeData aliases nothing;
-{R_ANY}.{°}*:myData instanceof ganttproject/GraphData not null;
-{R_ANY}.{°}*:myData instanceof ganttproject/GraphData aliases nothing;
-{R_ANY}.{°}*:myIncoming instanceof java/util/List not null;
-{R_ANY}.{°}*:myIncoming instanceof java/util/List aliases nothing;
-{R_ANY}.{°}*:myOutgoing instanceof java/util/List not null;
-{R_ANY}.{°}*:myOutgoing instanceof java/util/List aliases nothing;
-{R_ANY}.{°}*:myTxn instanceof ganttproject/Transaction not null;
-{R_ANY}.{°}*:mySubTask instanceof ganttproject/Node not null;
-{R_ANY}.{°}*:mySuperTask instanceof ganttproject/Node not null;
-{R_ANY}.{°}*:mySrc instanceof ganttproject/Node not null;
-{R_ANY}.{°}*:myDst instanceof ganttproject/Node not null;
-{R_ANY}.{°}*:myExplicitDep instanceof ganttproject/DependencyEdge not null;
-{R_ANY}.{°}*:myExplicitDep instanceof ganttproject/DependencyEdge aliases nothing;
-{R_ANY}.{°}*:myExplicitDep instanceof ganttproject/DependencyEdge expands to instanceof ganttproject/ExplicitDependencyImpl;
-{R_ANY}.{°}*:myTouchedNodes instanceof java/util/Set not null;
-{R_ANY}.{°}*:myTouchedNodes instanceof java/util/Set aliases nothing;
-{R_ANY}.{°}*:myTouchedNodes instanceof java/util/Set expands to instanceof common/LinkedList triggers common/LinkedList:(Lcommon/LinkedList;)V:_got_LinkedList:{$REF};
-{R_ANY}.{°}*:myLayers instanceof com/google/common/collect/Multimap not null;
-{R_ANY}.{°}*:myLayers instanceof com/google/common/collect/Multimap aliases nothing;
-{R_ANY}.{°}*:myDep instanceof ganttproject/TaskDependency not null;
-{R_ANY}.{°}*:mySrcNode instanceof ganttproject/Node not null;
-{R_ANY}.{°}*:myDstNode instanceof ganttproject/Node not null;
-{R_ANY}.{°}*:myBackup instanceof ganttproject/NodeData aliases nothing;
+{R_ANY}.ganttproject/Node:myTask instanceof ganttproject/Task not null;
+{R_ANY}.ganttproject/Node:myData instanceof ganttproject/NodeData not null;
+{R_ANY}.ganttproject/Node:myData instanceof ganttproject/NodeData aliases nothing;
+{R_ANY}.ganttproject/DependencyGraph:myData instanceof ganttproject/GraphData not null;
+{R_ANY}.ganttproject/DependencyGraph:myData instanceof ganttproject/GraphData aliases nothing;
+{R_ANY}.ganttproject/DependencyGraph:myTxn instanceof ganttproject/Transaction not null;
+{R_ANY}.ganttproject/NodeData:myIncoming instanceof java/util/List not null;
+{R_ANY}.ganttproject/NodeData:myIncoming instanceof java/util/List aliases nothing;
+{R_ANY}.ganttproject/NodeData:myOutgoing instanceof java/util/List not null;
+{R_ANY}.ganttproject/NodeData:myOutgoing instanceof java/util/List aliases nothing;
+{R_ANY}.ganttproject/NodeData:myTxn instanceof ganttproject/Transaction not null;
+{R_ANY}.ganttproject/NodeData:myBackup instanceof ganttproject/NodeData aliases nothing;
+{R_ANY}.ganttproject/GraphData:myLayers instanceof com/google/common/collect/Multimap not null;
+{R_ANY}.ganttproject/GraphData:myLayers instanceof com/google/common/collect/Multimap aliases nothing;
+{R_ANY}.ganttproject/GraphData:myTxn instanceof ganttproject/Transaction not null;
+{R_ANY}.ganttproject/GraphData:myBackup instanceof ganttproject/GraphData aliases nothing;
+{R_ANY}.ganttproject/Transaction:myTouchedNodes instanceof java/util/Set not null;
+{R_ANY}.ganttproject/Transaction:myTouchedNodes instanceof java/util/Set aliases nothing;
+{R_ANY}.ganttproject/Transaction:myTouchedNodes instanceof java/util/Set expands to instanceof common/LinkedList triggers common/LinkedList:(Lcommon/LinkedList;)V:_got_LinkedList:{$REF};
+{R_ANY}.ganttproject/ImplicitSubSuperTaskDependency:mySubTask instanceof ganttproject/Node not null;
+{R_ANY}.ganttproject/ImplicitSubSuperTaskDependency:mySuperTask instanceof ganttproject/Node not null;
+{R_ANY}.ganttproject/ImplicitInheritedDependency:mySrc instanceof ganttproject/Node not null;
+{R_ANY}.ganttproject/ImplicitInheritedDependency:myDst instanceof ganttproject/Node not null;
+{R_ANY}.ganttproject/ImplicitInheritedDependency:myExplicitDep instanceof ganttproject/DependencyEdge not null;
+{R_ANY}.ganttproject/ImplicitInheritedDependency:myExplicitDep instanceof ganttproject/DependencyEdge aliases nothing;
+{R_ANY}.ganttproject/ImplicitInheritedDependency:myExplicitDep instanceof ganttproject/DependencyEdge expands to instanceof ganttproject/ExplicitDependencyImpl;
+{R_ANY}.ganttproject/ExplicitDependencyImpl:myDep instanceof ganttproject/TaskDependency not null;
+{R_ANY}.ganttproject/ExplicitDependencyImpl:mySrcNode instanceof ganttproject/Node not null;
+{R_ANY}.ganttproject/ExplicitDependencyImpl:myDstNode instanceof ganttproject/Node not null;
 
-{R_ANY}.{°}*:myData.{°}*:myTxn instanceof ganttproject/Transaction aliases nothing;
+{R_ANY}.ganttproject(/Node|/DependencyGraph):myData.ganttproject(/NodeData|/GraphData):myTxn instanceof ganttproject/Transaction aliases nothing;
 {ROOT}:this.ganttproject/DependencyGraph:myTxn instanceof ganttproject/Transaction expands to nothing;
-{R_ANY}.{°}*:myData(.{°}*:myBackup)*.{°}*:myNode instanceof ganttproject/Node expands to nothing;
-{R_ANY}.{°}*:myData(.{°}*:myBackup)*.{°}*:myNode instanceof ganttproject/Node aliases target {$R_ANY};
+{R_ANY}.ganttproject/Node:myData(.ganttproject/NodeData:myBackup)*.ganttproject/NodeData:myNode instanceof ganttproject/Node expands to nothing;
+{R_ANY}.ganttproject/Node:myData(.ganttproject/NodeData:myBackup)*.ganttproject/NodeData:myNode instanceof ganttproject/Node aliases target {$R_ANY};
 
 -- incoming/outgoing transition of nodes 
-{R_ANY}.{°}*:myData(.{°}*:myIncoming|.{°}*:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object not null;
-{R_ANY}.{°}*:myData(.{°}*:myIncoming|.{°}*:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object aliases nothing;
-{R_ANY}.{°}*:myData(.{°}*:myIncoming|.{°}*:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof ganttproject/ExplicitDependencyImpl; 
-{R_ANY}.{°}*:myData(.{°}*:myIncoming|.{°}*:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof ganttproject/ImplicitInheritedDependency; 
-{R_ANY}.{°}*:myData(.{°}*:myIncoming|.{°}*:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof ganttproject/ImplicitSubSuperTaskDependency;
+{R_ANY}.ganttproject/Node:myData(.ganttproject/NodeData:myIncoming|.ganttproject/NodeData:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object not null;
+{R_ANY}.ganttproject/Node:myData(.ganttproject/NodeData:myIncoming|.ganttproject/NodeData:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object aliases nothing;
+{R_ANY}.ganttproject/Node:myData(.ganttproject/NodeData:myIncoming|.ganttproject/NodeData:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof ganttproject/ExplicitDependencyImpl; 
+{R_ANY}.ganttproject/Node:myData(.ganttproject/NodeData:myIncoming|.ganttproject/NodeData:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof ganttproject/ImplicitInheritedDependency; 
+{R_ANY}.ganttproject/Node:myData(.ganttproject/NodeData:myIncoming|.ganttproject/NodeData:myOutgoing).common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof ganttproject/ImplicitSubSuperTaskDependency;
 
--- coherence between nodes' incoming/outgoing and edges' source/target
-{R_ANY}.{°}*:myData.{°}*:myIncoming.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.{°}*:myDstNode|.{°}*:myDst|.{°}*:mySuperTask) instanceof ganttproject/Node not null;
-{R_ANY}.{°}*:myData.{°}*:myIncoming.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.{°}*:myDstNode|.{°}*:myDst|.{°}*:mySuperTask) instanceof ganttproject/Node expands to nothing;
-{R_ANY}.{°}*:myData.{°}*:myIncoming.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.{°}*:myDstNode|.{°}*:myDst|.{°}*:mySuperTask) instanceof ganttproject/Node aliases target {$R_ANY};
-{R_ANY}.{°}*:myData.{°}*:myOutgoing.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.{°}*:mySrcNode|.{°}*:mySrc|.{°}*:mySubTask) instanceof ganttproject/Node not null;
-{R_ANY}.{°}*:myData.{°}*:myOutgoing.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.{°}*:mySrcNode|.{°}*:mySrc|.{°}*:mySubTask) instanceof ganttproject/Node expands to nothing;
-{R_ANY}.{°}*:myData.{°}*:myOutgoing.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.{°}*:mySrcNode|.{°}*:mySrc|.{°}*:mySubTask) instanceof ganttproject/Node aliases target {$R_ANY};
+-- touched nodes in transactions 
+{R_ANY}.ganttproject/Transaction:myTouchedNodes.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object not null;
+{R_ANY}.ganttproject/Transaction:myTouchedNodes.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object aliases instanceof ganttproject/Node;
+{R_ANY}.ganttproject/Transaction:myTouchedNodes.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element instanceof java/lang/Object expands to instanceof ganttproject/Node; 
+
+-- coherence between nodes' incoming/outgoing and edges' source/target; note that this invariant is
+-- partial, because it just states that node.outgoing.next+.src may only alias node. Another invariant 
+-- should be present that states that exist some edge.src.outgoing.next+ that aliases edge, but this
+-- cannot be expressed in LICS
+{R_ANY}.ganttproject/Node:myData.ganttproject/NodeData:myIncoming.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.ganttproject/ExplicitDependencyImpl:myDstNode|.ganttproject/ImplicitInheritedDependency:myDst|.ganttproject/ImplicitSubSuperTaskDependency:mySuperTask) instanceof ganttproject/Node not null;
+{R_ANY}.ganttproject/Node:myData.ganttproject/NodeData:myIncoming.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.ganttproject/ExplicitDependencyImpl:myDstNode|.ganttproject/ImplicitInheritedDependency:myDst|.ganttproject/ImplicitSubSuperTaskDependency:mySuperTask) instanceof ganttproject/Node expands to nothing;
+{R_ANY}.ganttproject/Node:myData.ganttproject/NodeData:myIncoming.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.ganttproject/ExplicitDependencyImpl:myDstNode|.ganttproject/ImplicitInheritedDependency:myDst|.ganttproject/ImplicitSubSuperTaskDependency:mySuperTask) instanceof ganttproject/Node aliases target {$R_ANY};
+{R_ANY}.ganttproject/Node:myData.ganttproject/NodeData:myOutgoing.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.ganttproject/ExplicitDependencyImpl:mySrcNode|.ganttproject/ImplicitInheritedDependency:mySrc|.ganttproject/ImplicitSubSuperTaskDependency:mySubTask) instanceof ganttproject/Node not null;
+{R_ANY}.ganttproject/Node:myData.ganttproject/NodeData:myOutgoing.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.ganttproject/ExplicitDependencyImpl:mySrcNode|.ganttproject/ImplicitInheritedDependency:mySrc|.ganttproject/ImplicitSubSuperTaskDependency:mySubTask) instanceof ganttproject/Node expands to nothing;
+{R_ANY}.ganttproject/Node:myData.ganttproject/NodeData:myOutgoing.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element(.ganttproject/ExplicitDependencyImpl:mySrcNode|.ganttproject/ImplicitInheritedDependency:mySrc|.ganttproject/ImplicitSubSuperTaskDependency:mySubTask) instanceof ganttproject/Node aliases target {$R_ANY};
 
 -- no self-loops for ImplicitSubSuperTaskDependency edges
-{R_ANY}.{°}*:myData.{°}*:myIncoming.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element.{°}*:mySubTask instanceof ganttproject/Node never aliases target {$R_ANY};
-{R_ANY}.{°}*:myData.{°}*:myOutgoing.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element.{°}*:mySuperTask instanceof ganttproject/Node never aliases target {$R_ANY};
+{R_ANY}.ganttproject/Node:myData.ganttproject/NodeData:myIncoming.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element.{°}*:mySubTask instanceof ganttproject/Node never aliases target {$R_ANY};
+{R_ANY}.ganttproject/Node:myData.ganttproject/NodeData:myOutgoing.common/LinkedList:header(.common/LinkedList$Entry:next|.common/LinkedList$Entry:previous)+.common/LinkedList$Entry:element.{°}*:mySuperTask instanceof ganttproject/Node never aliases target {$R_ANY};
 
 resolve end
 
 trigger begin
-{R_ANY}.{°}*:myData instanceof ganttproject/NodeData expands to instanceof ganttproject/NodeData triggers ganttproject/Node:(Lganttproject/Node;)V:_got_myData:{$R_ANY};
-{R_ANY}.{°}*:myBackup instanceof ganttproject/NodeData expands to instanceof ganttproject/NodeData triggers ganttproject/NodeData:(Lganttproject/NodeData;)V:_got_myBackup:{$R_ANY};
+{R_ANY}.ganttproject/Node:myData instanceof ganttproject/NodeData expands to instanceof ganttproject/NodeData triggers ganttproject/Node:(Lganttproject/Node;)V:_got_myData:{$R_ANY};
+{R_ANY}.ganttproject/NodeData:myBackup instanceof ganttproject/NodeData expands to instanceof ganttproject/NodeData triggers ganttproject/NodeData:(Lganttproject/NodeData;)V:_got_myBackup:{$R_ANY};
 trigger end
