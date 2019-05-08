@@ -3,9 +3,6 @@ package tsafe;
 import static jbse.meta.Analysis.fail;
 import static jbse.meta.Analysis.ignore;
 
-import org.junit.Assert;
-import org.junit.Assume;
-
 /**
  * Drivers for TS_R_3 property.
  * 
@@ -31,7 +28,7 @@ public class TsafeTrajectorySynthesis {
 
 		//checks assertion
 		if (!trajEndsCorrectly(traj, trajSynth, route)) {
-			Assert.fail(null); 
+			fail(); 
 		}
 	}
 
@@ -39,7 +36,7 @@ public class TsafeTrajectorySynthesis {
 	
 	private void assume(boolean b) {
 		if (!b) {
-			Assume.assumeTrue(false);
+			throw new RuntimeException("Assumption violated");
 		}
 	}
 
@@ -51,7 +48,7 @@ public class TsafeTrajectorySynthesis {
 	}
 	
 	private boolean trajEndsCorrectly(Trajectory traj, TrajectorySynthesizer trajSynth, Route route) {
-		Point4D lastPoint = traj.lastPoint();
+		final Point4D lastPoint = traj.lastPoint();
 		final boolean trajTravelsMaxTime = lastPoint.getTime() == traj.firstPoint().getTime() + trajSynth.params.tsTimeHorizon;
 		final boolean trajReachesLastFix;
 		if (trajTravelsMaxTime) {
@@ -59,7 +56,7 @@ public class TsafeTrajectorySynthesis {
 		} else if (route.isEmpty()) {
 			trajReachesLastFix = false;
 		} else {
-			Fix lastFix = route.lastFix();
+			final Fix lastFix = route.lastFix();
 			trajReachesLastFix = lastFix.getLatitude() == lastPoint.getLatitude() && lastFix.getLongitude() == lastPoint.getLongitude();
 		}
 		return (trajTravelsMaxTime || trajReachesLastFix); 
