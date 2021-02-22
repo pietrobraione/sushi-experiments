@@ -3,6 +3,7 @@ package ganttproject.settings;
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
 import static common.Settings.GUAVA_PATH;
+import static common.Settings.JAVA8_HOME;
 import static common.Settings.JBSE_PATH;
 import static common.Settings.OUT_PATH;
 import static common.Settings.SETTINGS_PATH;
@@ -25,6 +26,7 @@ public class GanttprojectParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
+		p.setJava8Path(JAVA8_HOME);
 		p.setEvosuitePath(EVOSUITE_PATH);
 		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);

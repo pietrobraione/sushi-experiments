@@ -17,6 +17,7 @@ public class GanttprojectParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(Options p) {
 		//Local configurations
+		p.setJava8Path(JAVA8_HOME);
 		p.setEvosuitePath(EVOSUITE_PATH);
 		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);

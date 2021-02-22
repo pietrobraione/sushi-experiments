@@ -7,6 +7,7 @@ public final class Settings {
 	//Pietro's settings
 	public static final Path GIT_REPO_ROOT      = Paths.get("/Users", "pietro", "git");
 	public static final Path Z3_PATH            = Paths.get("/opt", "local", "bin", "z3");
+	public static final Path JAVA8_HOME         = Paths.get("/Library", "Java", "JavaVirtualMachines", "openjdk8", "Contents", "Home");
 	
 	//these are ok for everyone
 	public static final Path JBSE_PATH          = GIT_REPO_ROOT.resolve(Paths.get("sushi", "jbse", "build", "classes", "java", "main"));
