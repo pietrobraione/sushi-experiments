@@ -31,7 +31,6 @@ public class TsafeParametersPartial extends ParametersModifier {
 		//Local configurations
 		p.setJava8Path(JAVA8_HOME);
 		p.setEvosuitePath(EVOSUITE_PATH);
-		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -48,7 +47,7 @@ public class TsafeParametersPartial extends ParametersModifier {
 		p.setLogLevel(Level.INFO);
 
 		//Tmp out directories
-		p.setOutDirectory(OUT_PATH);
+		p.setOutDirPath(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
 
 		//Parallelism

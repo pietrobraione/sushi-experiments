@@ -27,7 +27,6 @@ public class DllHardParameters extends ParametersModifier {
 		//Local configurations
 		p.setJava8Path(JAVA8_HOME);
 		p.setEvosuitePath(EVOSUITE_PATH);
-		p.setUseMOSA(false);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setJBSELibraryPath(JBSE_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -44,7 +43,7 @@ public class DllHardParameters extends ParametersModifier {
 		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
 
 		//Tmp out directories
-		p.setOutDirectory(OUT_PATH);
+		p.setOutDirPath(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
 		
 		//Parallelism
