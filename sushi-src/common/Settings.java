@@ -6,22 +6,24 @@ import java.nio.file.Paths;
 public final class Settings {
 	//BEGIN TO PATCH
 	//Settings for Docker
-	public static final Path GIT_REPO_ROOT  = Paths.get("/root");
-	public static final Path Z3_PATH        = Paths.get("/usr", "bin", "z3");
-	public static final Path JAVA8_HOME     = Paths.get("/usr", "lib", "jvm", "java-8-openjdk-amd64");
-	
+	public static final Path SUSHI_WORKSPACE       = Paths.get("/root", "sushi");
+	public static final Path EXPERIMENTS_WORKSPACE = Paths.get("/root", "sushi-experiments");
+	public static final Path Z3_PATH               = Paths.get("/usr", "bin", "z3");
+	public static final Path JAVA8_HOME            = Paths.get("/usr", "lib", "jvm", "java-8-openjdk-amd64");
+
 	//Pietro's local settings
-	//public static final Path GIT_REPO_ROOT  = Paths.get("/Users", "pietro", "git");
-	//public static final Path Z3_PATH        = Paths.get("/opt", "local", "bin", "z3");
-	//public static final Path JAVA8_HOME     = Paths.get("/Library", "Java", "JavaVirtualMachines", "openjdk8", "Contents", "Home");
+	//public static final Path SUSHI_WORKSPACE       = Paths.get("/Users", "pietro", "git", "sushi");
+	//public static final Path EXPERIMENTS_WORKSPACE = Paths.get("/Users", "pietro", "git", "sushi-experiments");
+	//public static final Path Z3_PATH               = Paths.get("/opt", "local", "bin", "z3");
+	//public static final Path JAVA8_HOME            = Paths.get("/Library", "Java", "JavaVirtualMachines", "openjdk8", "Contents", "Home");
 	//END TO PATCH
-	
-	public static final Path JBSE_PATH      = GIT_REPO_ROOT.resolve(Paths.get("sushi", "jbse", "build", "classes", "java", "main"));
-	public static final Path SUSHI_LIB_PATH = GIT_REPO_ROOT.resolve(Paths.get("sushi", "runtime", "build", "classes", "java", "main"));
-	public static final Path EVOSUITE_PATH  = GIT_REPO_ROOT.resolve(Paths.get("sushi", "libs", "evosuite-shaded-1.0.6-SNAPSHOT.jar"));
-	public static final Path BIN_PATH       = GIT_REPO_ROOT.resolve(Paths.get("sushi-experiments", "bin"));
-	public static final Path GUAVA_PATH     = GIT_REPO_ROOT.resolve(Paths.get("sushi-experiments", "libs", "ganttproject-guava.jar"));
-	public static final Path TMP_BASE_PATH  = GIT_REPO_ROOT.resolve(Paths.get("sushi-experiments", "sushi-out"));
-	public static final Path OUT_PATH       = GIT_REPO_ROOT.resolve(Paths.get("sushi-experiments", "sushi-test"));
-	public static final Path SETTINGS_PATH  = GIT_REPO_ROOT.resolve(Paths.get("sushi-experiments", "settings"));
+
+	public static final Path JBSE_PATH      = SUSHI_WORKSPACE.resolve(Paths.get("jbse", "build", "classes", "java", "main"));
+	public static final Path SUSHI_LIB_PATH = SUSHI_WORKSPACE.resolve(Paths.get("runtime", "build", "classes", "java", "main"));
+	public static final Path EVOSUITE_PATH  = SUSHI_WORKSPACE.resolve(Paths.get("libs", "evosuite-shaded-1.0.6-SNAPSHOT.jar"));
+	public static final Path BIN_PATH       = EXPERIMENTS_WORKSPACE.resolve(Paths.get("bin"));
+	public static final Path GUAVA_PATH     = EXPERIMENTS_WORKSPACE.resolve(Paths.get("libs", "ganttproject-guava.jar"));
+	public static final Path TMP_BASE_PATH  = EXPERIMENTS_WORKSPACE.resolve(Paths.get("sushi-out"));
+	public static final Path OUT_PATH       = EXPERIMENTS_WORKSPACE.resolve(Paths.get("sushi-test"));
+	public static final Path SETTINGS_PATH  = EXPERIMENTS_WORKSPACE.resolve(Paths.get("settings"));
 }
