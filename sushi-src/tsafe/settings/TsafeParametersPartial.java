@@ -17,13 +17,13 @@ import jbse.rewr.RewriterAbsSum;
 import jbse.rewr.RewriterPolynomials;
 import jbse.rewr.RewriterSinCos;
 import jbse.rewr.RewriterSqrt;
-import sushi.configure.Coverage;
-import sushi.configure.JBSEParameters;
-import sushi.configure.MergerParameters;
-import sushi.configure.Options;
-import sushi.configure.ParametersModifier;
-import sushi.configure.ParseException;
-import sushi.logging.Level;
+import sushi.Coverage;
+import sushi.Options;
+import sushi.ParametersModifier;
+import sushi.ParseException;
+import sushi.execution.jbse.JBSEParameters;
+import sushi.execution.merger.MergerParameters;
+import sushi.Level;
 
 public class TsafeParametersPartial extends ParametersModifier {
 	@Override
