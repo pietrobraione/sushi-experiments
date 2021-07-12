@@ -27,15 +27,15 @@ public class NcllConfiguratorPartial implements OptionsConfigurator {
 
 		//Target 
 		p.setClassesPath(BIN_PATH);
-		p.setTargetClass("node_caching_linked_list/NodeCachingLinkedList");
+		p.setTargetClass("ncll/NodeCachingLinkedList");
 
 		//Analysis params 
 		p.setEvosuiteBudget(300);
 		p.setJBSEBudget(3600);
 		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setBranchesToCover("node_caching_linked_list/NodeCachingLinkedList.*");
-		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
+		p.setBranchesToCover("ncll/NodeCachingLinkedList.*");
+		p.setHeapScope("ncll/NodeCachingLinkedList$LinkedListNode", 3); 			
 		p.setDepthScope(50);
 		p.setCountScope(600);
 		p.setHEXFiles(SETTINGS_PATH.resolve("node_caching_linked_list_partial.jbse"));

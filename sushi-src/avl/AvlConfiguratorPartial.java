@@ -20,15 +20,15 @@ public class AvlConfiguratorPartial implements OptionsConfigurator {
 		
 		//Target 
 		p.setClassesPath(BIN_PATH);
-		p.setTargetClass("avl_tree/AvlTree");
+		p.setTargetClass("avl/AvlTree");
 
 		//Analysis params 
 		p.setEvosuiteBudget(60);
 		p.setJBSEBudget(3600);
 		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setBranchesToCover("avl_tree/AvlTree.*");
-		p.setHeapScope("avl_tree/AvlNode", 5);
+		p.setBranchesToCover("avl/AvlTree.*");
+		p.setHeapScope("avl/AvlNode", 5);
 		p.setHEXFiles(SETTINGS_PATH.resolve("avl_tree_partial.jbse"));
 
 		//Tmp out directories
