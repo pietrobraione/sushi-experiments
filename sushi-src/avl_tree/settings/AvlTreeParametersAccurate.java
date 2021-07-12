@@ -2,20 +2,14 @@ package avl_tree.settings;
 
 import static common.Settings.*;
 
-import java.io.IOException;
-import java.util.List;
-
 import sushi.Coverage;
 import sushi.Options;
-import sushi.ParametersModifier;
-import sushi.ParseException;
-import sushi.execution.jbse.JBSEParameters;
-import sushi.execution.merger.MergerParameters;
+import sushi.OptionsConfigurator;
 import sushi.Level;
 
-public class AvlTreeParametersAccurate extends ParametersModifier {
+public class AvlTreeParametersAccurate implements OptionsConfigurator {
 	@Override
-	public void modify(Options p) {
+	public void configure(Options p) {
 		//Local configurations
 		p.setJava8Path(JAVA8_HOME);
 		p.setEvosuitePath(EVOSUITE_PATH);
@@ -32,35 +26,28 @@ public class AvlTreeParametersAccurate extends ParametersModifier {
 		p.setEvosuiteBudget(3600);
 		p.setJBSEBudget(3600);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.DEBUG);
+		p.setBranchesToCover("avl_tree/AvlTree.*");
+		p.setHeapScope("avl_tree/AvlNode", 5);
+		p.setHEXFiles(SETTINGS_PATH.resolve("avl_tree_accurate.jbse"));
+		
+		//Phases
 		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
 
 		//Tmp out directories
 		p.setOutDirPath(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
 		
-		//Parallelism
+		//Redundance and parallelism
 		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(2);
 		
+		//Evosuite
+		p.setAdditionalEvosuiteArgs("-Dobject_reuse_probability=0.8");
+
+		//Logging
+		p.setLogLevel(Level.DEBUG);
+
 		//Timeout
 		p.setGlobalBudget(7200);
-	}
-	
-	@Override
-	public void modify(JBSEParameters p) 
-	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("avl_tree_accurate.jbse"), p);
-		p.setHeapScope("avl_tree/AvlNode", 5);
-	}							 
-
-	@Override
-	public void modify(MergerParameters p) {
-		p.setBranchesToCover("avl_tree/AvlTree.*");
-	}
-
-	@Override
-	public void modify(List<String> p) {
-		p.add("-Dobject_reuse_probability=0.8");
 	}
 }

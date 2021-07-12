@@ -10,20 +10,14 @@ import static common.Settings.SUSHI_LIB_PATH;
 import static common.Settings.TMP_BASE_PATH;
 import static common.Settings.Z3_PATH;
 
-import java.io.IOException;
-import java.util.List;
-
 import sushi.Coverage;
 import sushi.Options;
-import sushi.ParametersModifier;
-import sushi.ParseException;
-import sushi.execution.jbse.JBSEParameters;
-import sushi.execution.merger.MergerParameters;
+import sushi.OptionsConfigurator;
 import sushi.Level;
 
-public class DllHardParameters extends ParametersModifier {
+public class DllHardParameters implements OptionsConfigurator {
 	@Override
-	public void modify(Options p) {
+	public void configure(Options p) {
 		//Local configurations
 		p.setJava8Path(JAVA8_HOME);
 		p.setEvosuitePath(EVOSUITE_PATH);
@@ -39,35 +33,27 @@ public class DllHardParameters extends ParametersModifier {
 		p.setEvosuiteBudget(2400);
 		p.setJBSEBudget(3600);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.DEBUG);
+		p.setBranchesToCover("dll_hard/Main:\\(Lcommon/LinkedList;Ljava/lang/Object;\\)V:sample:.*");
+		p.setHEXFiles(SETTINGS_PATH.resolve("linked_list.jbse"), SETTINGS_PATH.resolve("dll_hard.jbse"));
+		
+		//Phases
 		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
 
 		//Tmp out directories
 		p.setOutDirPath(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
 		
-		//Parallelism
+		//Redundance and parallelism
 		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(2);
 		
+		//Logging
+		p.setLogLevel(Level.DEBUG);
+		
+		//Evosuite
+		p.setAdditionalEvosuiteArgs("-Dobject_reuse_probability=0.8");
+
 		//Timeout
 		p.setGlobalBudget(7200);
-	}
-
-	@Override
-	public void modify(JBSEParameters p) 
-	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse"), p);
-		loadHEXFile(SETTINGS_PATH.resolve("dll_hard.jbse"), p);
-	}
-	
-	@Override
-	public void modify(MergerParameters p) {
-		p.setBranchesToCover("dll_hard/Main:\\(Lcommon/LinkedList;Ljava/lang/Object;\\)V:sample:.*");
-	}
-
-	@Override
-	public void modify(List<String> p) {
-		p.add("-Dobject_reuse_probability=0.8");
 	}
 }

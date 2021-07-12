@@ -10,24 +10,15 @@ import static common.Settings.SUSHI_LIB_PATH;
 import static common.Settings.TMP_BASE_PATH;
 import static common.Settings.Z3_PATH;
 
-import java.io.IOException;
-import java.util.List;
-
-import jbse.rewr.RewriterAbsSum;
-import jbse.rewr.RewriterPolynomials;
-import jbse.rewr.RewriterSinCos;
-import jbse.rewr.RewriterSqrt;
 import sushi.Coverage;
 import sushi.Options;
-import sushi.ParametersModifier;
-import sushi.ParseException;
-import sushi.execution.jbse.JBSEParameters;
-import sushi.execution.merger.MergerParameters;
+import sushi.OptionsConfigurator;
+import sushi.Rewriter;
 import sushi.Level;
 
-public class TsafeParametersPartial extends ParametersModifier {
+public class TsafeParametersPartial implements OptionsConfigurator {
 	@Override
-	public void modify(Options p) {
+	public void configure(Options p) {
 		//Local configurations
 		p.setJava8Path(JAVA8_HOME);
 		p.setEvosuitePath(EVOSUITE_PATH);
@@ -44,37 +35,26 @@ public class TsafeParametersPartial extends ParametersModifier {
 		p.setJBSEBudget(3600);
 		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setLogLevel(Level.INFO);
+		p.setBranchesToCover("tsafe/TsafeTrajectorySynthesis.*");
+		p.setHeapScope("common/LinkedList$Entry", 3);
+		p.setHEXFiles(SETTINGS_PATH.resolve("linked_list.jbse"), SETTINGS_PATH.resolve("tsafe_partial.jbse"));
+		p.setDoSignAnalysis(true);
+		p.setRewriters(Rewriter.ABS_SUM, Rewriter.POLYNOMIALS, Rewriter.SIN_COS, Rewriter.SQRT);
 
 		//Tmp out directories
 		p.setOutDirPath(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
 
-		//Parallelism
+		//Redundance and parallelism
 		p.setParallelismEvosuite(20);
+		
+		//Evosuite
+		p.setAdditionalEvosuiteArgs("-Dobject_reuse_probability=0.8 -Delite=5");
+
+		//Logging
+		p.setLogLevel(Level.INFO);
 		
 		//Timeout
 		p.setGlobalBudget(7200);
-	}
-
-	@Override
-	public void modify(JBSEParameters p) 
-	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("linked_list.jbse"), p);
-		loadHEXFile(SETTINGS_PATH.resolve("tsafe_partial.jbse"), p);
-		p.setDoSignAnalysis(true);
-		p.addRewriter(RewriterPolynomials.class, RewriterSinCos.class, RewriterSqrt.class, RewriterAbsSum.class);
-		p.setHeapScope("common/LinkedList$Entry", 3);
-	}
-
-	@Override
-	public void modify(MergerParameters p) {
-		p.setBranchesToCover("tsafe/TsafeTrajectorySynthesis.*");
-	}
-
-	@Override
-	public void modify(List<String> p) {
-		p.add("-Dobject_reuse_probability=0.8");
-		p.add("-Delite=5");
 	}
 }
