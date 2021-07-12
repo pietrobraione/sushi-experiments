@@ -1,4 +1,4 @@
-package treemap.settings;
+package ncll;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
@@ -15,7 +15,7 @@ import sushi.Options;
 import sushi.OptionsConfigurator;
 import sushi.Level;
 
-public class TreemapParametersPartial implements OptionsConfigurator {
+public class NcllConfiguratorPartial implements OptionsConfigurator {
 	@Override
 	public void configure(Options p) {
 		//Local configurations
@@ -27,18 +27,18 @@ public class TreemapParametersPartial implements OptionsConfigurator {
 
 		//Target 
 		p.setClassesPath(BIN_PATH);
-		p.setTargetClass("treemap/TreeMap");
-		
+		p.setTargetClass("node_caching_linked_list/NodeCachingLinkedList");
+
 		//Analysis params 
-		p.setEvosuiteBudget(360);
+		p.setEvosuiteBudget(300);
 		p.setJBSEBudget(3600);
 		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
-		p.setBranchesToCover("treemap/TreeMap(?!.*HEXTriggers.*$).*");
-		p.setHeapScope("treemap/TreeMap$Entry", 5); 				
-		p.setDepthScope(500);
-		p.setCountScope(6000);
-		p.setHEXFiles(SETTINGS_PATH.resolve("tree_map_partial.jbse"));
+		p.setBranchesToCover("node_caching_linked_list/NodeCachingLinkedList.*");
+		p.setHeapScope("node_caching_linked_list/NodeCachingLinkedList$LinkedListNode", 3); 			
+		p.setDepthScope(50);
+		p.setCountScope(600);
+		p.setHEXFiles(SETTINGS_PATH.resolve("node_caching_linked_list_partial.jbse"));
 		
 		//Tmp out directories
 		p.setOutDirPath(OUT_PATH);

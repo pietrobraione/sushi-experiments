@@ -1,4 +1,4 @@
-package node_caching_linked_list;
+package ncll;
 /*
  *  Licensed to the Apache Software Foundation (ASF) under one or more
  *  contributor license agreements.  See the NOTICE file distributed with
@@ -16,10 +16,7 @@ package node_caching_linked_list;
  *  limitations under the License.
  */
 
-
-
 import jbse.meta.Analysis;
-
 
 /**
  * A <code>List</code> implementation that stores a cache of internal Node objects

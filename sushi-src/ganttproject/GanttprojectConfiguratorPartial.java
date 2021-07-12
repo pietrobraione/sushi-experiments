@@ -1,4 +1,4 @@
-package ganttproject.settings;
+package ganttproject;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
@@ -16,7 +16,7 @@ import sushi.Options;
 import sushi.OptionsConfigurator;
 import sushi.Level;
 
-public class GanttprojectParametersPartial implements OptionsConfigurator {
+public class GanttprojectConfiguratorPartial implements OptionsConfigurator {
 	@Override
 	public void configure(Options p) {
 		//Local configurations

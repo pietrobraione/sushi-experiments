@@ -1,4 +1,4 @@
-package ganttproject.settings;
+package ganttproject;
 
 import static common.Settings.*;
 
@@ -7,7 +7,7 @@ import sushi.Options;
 import sushi.OptionsConfigurator;
 import sushi.Level;
 
-public class GanttprojectParametersAccurate implements OptionsConfigurator {
+public class GanttprojectConfiguratorAccurate implements OptionsConfigurator {
 	@Override
 	public void configure(Options p) {
 		//Local configurations

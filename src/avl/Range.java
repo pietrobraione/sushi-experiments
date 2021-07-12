@@ -1,4 +1,4 @@
-package avl_tree;
+package avl;
 /*
  * Range
  *

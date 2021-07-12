@@ -1,4 +1,4 @@
-package avl_tree;
+package avl;
 
 public class RangeHeight {
     private final int lower;

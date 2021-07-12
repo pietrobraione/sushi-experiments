@@ -1,4 +1,4 @@
-package avl_tree.settings;
+package avl;
 
 import static common.Settings.*;
 
@@ -7,7 +7,7 @@ import sushi.Options;
 import sushi.OptionsConfigurator;
 import sushi.Level;
 
-public class AvlTreeParametersPartial implements OptionsConfigurator {
+public class AvlConfiguratorPartial implements OptionsConfigurator {
 	@Override
 	public void configure(Options p) {
 		//Local configurations

@@ -1,4 +1,4 @@
-package tsafe.settings;
+package tsafe;
 
 import static common.Settings.BIN_PATH;
 import static common.Settings.EVOSUITE_PATH;
@@ -16,7 +16,7 @@ import sushi.OptionsConfigurator;
 import sushi.Rewriter;
 import sushi.Level;
 
-public class TsafeParametersAccurate implements OptionsConfigurator {
+public class TsafeConfiguratorPartial implements OptionsConfigurator {
 	@Override
 	public void configure(Options p) {
 		//Local configurations
@@ -31,31 +31,28 @@ public class TsafeParametersAccurate implements OptionsConfigurator {
 		p.setTargetClass("tsafe/TsafeTrajectorySynthesis");
 		
 		//Analysis params 
-		p.setEvosuiteBudget(3600);
+		p.setEvosuiteBudget(240);
 		p.setJBSEBudget(3600);
+		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
 		p.setBranchesToCover("tsafe/TsafeTrajectorySynthesis.*");
 		p.setHeapScope("common/LinkedList$Entry", 3);
-		p.setHEXFiles(SETTINGS_PATH.resolve("linked_list.jbse"), SETTINGS_PATH.resolve("tsafe_accurate.jbse"));
+		p.setHEXFiles(SETTINGS_PATH.resolve("linked_list.jbse"), SETTINGS_PATH.resolve("tsafe_partial.jbse"));
 		p.setDoSignAnalysis(true);
 		p.setRewriters(Rewriter.ABS_SUM, Rewriter.POLYNOMIALS, Rewriter.SIN_COS, Rewriter.SQRT);
-		
-		//Phases
-		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
 
 		//Tmp out directories
-		p.setOutDirPath(OUT_PATH);		
+		p.setOutDirPath(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
 
 		//Redundance and parallelism
-		p.setRedundanceEvosuite(1);
-		p.setParallelismEvosuite(2);
+		p.setParallelismEvosuite(20);
 		
 		//Evosuite
 		p.setAdditionalEvosuiteArgs("-Dobject_reuse_probability=0.8 -Delite=5");
 
 		//Logging
-		p.setLogLevel(Level.DEBUG);
+		p.setLogLevel(Level.INFO);
 		
 		//Timeout
 		p.setGlobalBudget(7200);

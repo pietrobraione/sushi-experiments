@@ -1,4 +1,4 @@
-package avl_tree;
+package avl;
 
 /**
  * Implements an AVL tree. Note that all "matching" is based on the compareTo
