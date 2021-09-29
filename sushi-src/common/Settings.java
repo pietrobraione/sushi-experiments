@@ -15,12 +15,12 @@ public final class Settings {
 	public static final Path SUSHI_WORKSPACE       = Paths.get("/Users", "pietro", "git", "sushi");
 	public static final Path EXPERIMENTS_WORKSPACE = Paths.get("/Users", "pietro", "git", "sushi-experiments");
 	public static final Path Z3_PATH               = Paths.get("/opt", "local", "bin", "z3");
-	public static final Path JAVA8_HOME            = Paths.get("/Library", "Java", "JavaVirtualMachines", "openjdk8", "Contents", "Home");
+	public static final Path JAVA8_HOME            = Paths.get("/Library", "Java", "JavaVirtualMachines", "openjdk8-temurin", "Contents", "Home");
 	//END TO PATCH
 
 	public static final Path JBSE_PATH      = SUSHI_WORKSPACE.resolve(Paths.get("jbse", "build", "classes", "java", "main"));
 	public static final Path SUSHI_LIB_PATH = SUSHI_WORKSPACE.resolve(Paths.get("runtime", "build", "classes", "java", "main"));
-	public static final Path EVOSUITE_PATH  = SUSHI_WORKSPACE.resolve(Paths.get("libs", "evosuite-shaded-1.0.6-SNAPSHOT.jar"));
+	public static final Path EVOSUITE_PATH  = SUSHI_WORKSPACE.resolve(Paths.get("libs", "evosuite-shaded-1.1.1-SNAPSHOT.jar"));
 	public static final Path BIN_PATH       = EXPERIMENTS_WORKSPACE.resolve(Paths.get("bin"));
 	public static final Path GUAVA_PATH     = EXPERIMENTS_WORKSPACE.resolve(Paths.get("libs", "ganttproject-guava.jar"));
 	public static final Path TMP_BASE_PATH  = EXPERIMENTS_WORKSPACE.resolve(Paths.get("sushi-out"));

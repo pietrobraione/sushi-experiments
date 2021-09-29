@@ -7,7 +7,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/jbse"/>
 	<classpathentry kind="lib" path="libs/ganttproject-guava.jar"/>
-	<classpathentry kind="lib" path="/sushi/libs/evosuite-shaded-1.0.6-SNAPSHOT.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sushi-master"/>
+	<classpathentry kind="lib" path="/sushi/libs/evosuite-shaded-1.1.1-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
