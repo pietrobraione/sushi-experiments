@@ -20,7 +20,7 @@ public final class Settings {
 
 	public static final Path JBSE_PATH      = SUSHI_WORKSPACE.resolve(Paths.get("jbse", "build", "classes", "java", "main"));
 	public static final Path SUSHI_LIB_PATH = SUSHI_WORKSPACE.resolve(Paths.get("runtime", "build", "classes", "java", "main"));
-	public static final Path EVOSUITE_PATH  = SUSHI_WORKSPACE.resolve(Paths.get("libs", "evosuite-shaded-1.1.1-SNAPSHOT.jar"));
+	public static final Path EVOSUITE_PATH  = SUSHI_WORKSPACE.resolve(Paths.get("libs", "evosuite-shaded-1.2.1-SNAPSHOT.jar"));
 	public static final Path BIN_PATH       = EXPERIMENTS_WORKSPACE.resolve(Paths.get("bin"));
 	public static final Path GUAVA_PATH     = EXPERIMENTS_WORKSPACE.resolve(Paths.get("libs", "ganttproject-guava.jar"));
 	public static final Path TMP_BASE_PATH  = EXPERIMENTS_WORKSPACE.resolve(Paths.get("sushi-out"));
