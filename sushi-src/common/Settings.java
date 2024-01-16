@@ -14,8 +14,8 @@ public final class Settings {
 	//Pietro's local settings
 	//public static final Path SUSHI_WORKSPACE       = Paths.get("/Users", "pietro", "git", "sushi");
 	//public static final Path EXPERIMENTS_WORKSPACE = Paths.get("/Users", "pietro", "git", "sushi-experiments");
-	//public static final Path Z3_PATH               = Paths.get("/opt", "local", "bin", "z3");
-	//public static final Path JAVA8_HOME            = Paths.get("/Library", "Java", "JavaVirtualMachines", "openjdk8-temurin", "Contents", "Home");
+	//public static final Path Z3_PATH               = Paths.get("/usr", "local", "bin", "z3");
+	//public static final Path JAVA8_HOME            = Paths.get("/Library", "Java", "JavaVirtualMachines", "temurin-8.jdk", "Contents", "Home");
 	//END TO PATCH
 
 	public static final Path JBSE_PATH      = SUSHI_WORKSPACE.resolve(Paths.get("jbse", "build", "classes", "java", "main"));
