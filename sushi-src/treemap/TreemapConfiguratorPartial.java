@@ -10,10 +10,11 @@ import static common.Settings.SUSHI_LIB_PATH;
 import static common.Settings.TMP_BASE_PATH;
 import static common.Settings.Z3_PATH;
 
+import org.apache.logging.log4j.Level;
+
 import sushi.Coverage;
 import sushi.Options;
 import sushi.OptionsConfigurator;
-import sushi.Level;
 
 public class TreemapConfiguratorPartial implements OptionsConfigurator {
 	@Override

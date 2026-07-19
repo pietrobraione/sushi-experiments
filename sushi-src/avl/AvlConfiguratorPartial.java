@@ -2,10 +2,12 @@ package avl;
 
 import static common.Settings.*;
 
+import org.apache.logging.log4j.Level;
+
+
 import sushi.Coverage;
 import sushi.Options;
 import sushi.OptionsConfigurator;
-import sushi.Level;
 
 public class AvlConfiguratorPartial implements OptionsConfigurator {
 	@Override

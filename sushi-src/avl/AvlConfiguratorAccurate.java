@@ -2,10 +2,11 @@ package avl;
 
 import static common.Settings.*;
 
+import org.apache.logging.log4j.Level;
+
 import sushi.Coverage;
 import sushi.Options;
 import sushi.OptionsConfigurator;
-import sushi.Level;
 
 public class AvlConfiguratorAccurate implements OptionsConfigurator {
 	@Override
@@ -31,7 +32,7 @@ public class AvlConfiguratorAccurate implements OptionsConfigurator {
 		p.setHEXFiles(SETTINGS_PATH.resolve("avl_tree_accurate.jbse"));
 		
 		//Phases
-		p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
+		//p.setPhases(1, 2, 3, 4, 5, 6); /*1=JBSE-traces, 2-merge, 3=Minimize, 4=JBSE-sushiPC, 5-Javac, 6-EvoSuite*/
 
 		//Tmp out directories
 		p.setOutDirPath(OUT_PATH);
